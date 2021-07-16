@@ -9,6 +9,7 @@ import javax.persistence.*;
 public class StockExchange {
 
     @Id
+    @GeneratedValue
     @Column(name = "id")
     private int id;
     private String name;
