@@ -1,6 +1,6 @@
-package com.example.stockExchange.repositories;
+package com.example.stockexchange.repositories;
 
-import com.example.stockExchange.entities.StockExchange;
+import com.example.stockexchange.entities.StockExchange;
 import org.springframework.data.repository.CrudRepository;
 
 public interface StockExchangeRepository extends CrudRepository<StockExchange, Integer> {

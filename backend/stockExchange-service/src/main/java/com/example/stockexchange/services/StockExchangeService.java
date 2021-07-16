@@ -1,8 +1,8 @@
-package com.example.stockExchange.services;
+package com.example.stockexchange.services;
 
-import com.example.stockExchange.entities.StockExchange;
-import com.example.stockExchange.repositories.AddressRepository;
-import com.example.stockExchange.repositories.StockExchangeRepository;
+import com.example.stockexchange.entities.StockExchange;
+import com.example.stockexchange.repositories.AddressRepository;
+import com.example.stockexchange.repositories.StockExchangeRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
