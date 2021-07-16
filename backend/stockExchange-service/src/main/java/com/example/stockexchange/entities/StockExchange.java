@@ -1,4 +1,4 @@
-package com.example.stockExchange.entities;
+package com.example.stockexchange.entities;
 
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 

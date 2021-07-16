@@ -1,4 +1,4 @@
-package com.example.stockExchange;
+package com.example.stockexchange;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
