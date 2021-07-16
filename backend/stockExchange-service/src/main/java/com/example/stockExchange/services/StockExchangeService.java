@@ -22,7 +22,7 @@ public class StockExchangeService {
     public List<StockExchange> getAllStockExchanges()
     {
         List<StockExchange> stockExchanges = new ArrayList<StockExchange>();
-        stockExchangeRepository.findAll().forEach(books1 -> stockExchanges.add(books1));
+        stockExchangeRepository.findAll().forEach(stockExchanges1 -> stockExchanges.add(stockExchanges1));
         return stockExchanges;
     }
 
