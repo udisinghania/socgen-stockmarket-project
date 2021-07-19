@@ -49,10 +49,10 @@ public class StockExchangeService {
 
     public StockExchange updateStockExchange(int id, StockExchange stockExchange)
     {
-        Optional<StockExchange> sector1 = stockExchangeRepository.findById(id);
+        Optional<StockExchange> stockExchange1 = stockExchangeRepository.findById(id);
 
-        if(sector1.isPresent()) {
-            StockExchange newEntity = sector1.get();
+        if(stockExchange1.isPresent()) {
+            StockExchange newEntity = stockExchange1.get();
             newEntity.setName(stockExchange.getName());
             newEntity.setBrief(stockExchange.getBrief());
             newEntity.setRemarks(stockExchange.getRemarks());
