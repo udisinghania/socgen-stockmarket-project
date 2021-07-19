@@ -2,14 +2,12 @@ package com.stockmarket.companyservice.entities;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
-import javax.persistence.GeneratedValue;
 import javax.persistence.ManyToOne;
 
 @Entity
 public class Stock {
 
     @Id
-    @GeneratedValue
     private String id;
     private String companyCode;
     private int stockExchangeId;

@@ -30,7 +30,7 @@ public class CompanyService {
 
     }
 
-    public Company addSector(Company company)
+    public Company addCompany(Company company)
     {
         return companyRepository.save(company);
     }
@@ -45,7 +45,7 @@ public class CompanyService {
         return false;
     }
 
-    public Company updateSector(int id, Company company)
+    public Company updateCompany(int id, Company company)
     {
         Optional<Company> company1 = companyRepository.findById(id);
 
@@ -57,6 +57,7 @@ public class CompanyService {
             newEntity.setSectorId(company.getSectorId());
             newEntity.setDescription(company.getDescription());
             newEntity.setTurnover(company.getTurnover());
+            newEntity.setStockExchangeId(company.getStockExchangeId());
             newEntity.setBoardOfDirectors(company.getBoardOfDirectors());
             return companyRepository.save(newEntity);
         }
@@ -65,6 +66,9 @@ public class CompanyService {
         }
     }
 
+    public List<Company> getCompanyByPattern(String pattern){
+        return companyRepository.findByNameContainingIgnoreCase(pattern);
+    }
 
 
 

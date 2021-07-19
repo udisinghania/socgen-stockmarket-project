@@ -2,13 +2,11 @@ package com.stockmarket.companyservice.entities;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
-import javax.persistence.GeneratedValue;
-import javax.persistence.ManyToOne;
+import javax.persistence.OneToOne;
 
 @Entity
 public class Ipo {
     @Id
-    @GeneratedValue
     private String id;
     private int stockExchangeId;
     private double price;
@@ -16,20 +14,21 @@ public class Ipo {
     private String openDateTime;
     private String remarks;
 
+    @OneToOne
+    private Company company;
 
     public Ipo(){
         super();
     }
 
-    public Ipo(String id, int stockExchangeId, double price, int shares, String openDateTime, String remarks) {
-        super();
+    public Ipo(String id, int stockExchangeId, double price, int shares, String openDateTime, String remarks, Company company) {
         this.id = id;
         this.stockExchangeId = stockExchangeId;
         this.price = price;
         this.shares = shares;
         this.openDateTime = openDateTime;
         this.remarks = remarks;
-
+        this.company = company;
     }
 
     public String getId() {
@@ -80,5 +79,11 @@ public class Ipo {
         this.remarks = remarks;
     }
 
+    public Company getCompany() {
+        return company;
+    }
 
+    public void setCompany(Company company) {
+        this.company = company;
+    }
 }

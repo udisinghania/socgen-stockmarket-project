@@ -58,6 +58,7 @@
 		<module>sector-service</module>
 		<module>stockexchange-service</module>
 		<module>company-service</module>
+		<module>stock-service</module>
 	</modules>
 	<build>
 		<plugins>

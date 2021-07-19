@@ -26,9 +26,6 @@ public class Company {
     private int stockExchangeId;
     private int sectorId;
 
-    @OneToOne(cascade= {CascadeType.ALL})
-    private Ipo ipo;
-
     @OneToMany
     @JsonProperty(access= JsonProperty.Access.WRITE_ONLY)
     private List<Stock> stocks;
@@ -42,7 +39,7 @@ public class Company {
         super();
     }
 
-    public Company(String id, String name, long turnover, String ceo, String boardOfDirectors, String description, String companyCode, int stockExchangeId, int sectorId, Ipo ipo, List<Stock> stocks) {
+    public Company(String id, String name, long turnover, String ceo, String boardOfDirectors, String description, String companyCode, int stockExchangeId, int sectorId, List<Stock> stocks) {
         this.id = id;
         this.name = name;
         this.turnover = turnover;
@@ -52,7 +49,6 @@ public class Company {
         this.companyCode = companyCode;
         this.stockExchangeId = stockExchangeId;
         this.sectorId = sectorId;
-        this.ipo = ipo;
         this.stocks = stocks;
     }
 
