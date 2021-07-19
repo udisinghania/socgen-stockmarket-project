@@ -30,7 +30,7 @@ public class IpoService {
 
     }
 
-    public Ipo addSector(Ipo ipo)
+    public Ipo addIpo(Ipo ipo)
     {
         return ipoRepository.save(ipo);
     }
@@ -46,6 +46,7 @@ public class IpoService {
     }
 
 
-
-
+    public Ipo getIpoByCompanyId(int companyId) {
+        return ipoRepository.findByCompanyId(companyId);
+    }
 }

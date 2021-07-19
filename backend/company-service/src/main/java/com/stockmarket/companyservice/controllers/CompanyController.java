@@ -33,6 +33,15 @@ public class CompanyController {
         return companyOptional.isPresent()?ResponseEntity.ok(companyOptional.get()): ResponseEntity.status(HttpStatus.NOT_FOUND).body("Company with id "+id+" not found.");
     }
 
+    @DeleteMapping("/company/{id}")
+    private ResponseEntity deleteCompany(@PathVariable int id){
+
+        if (!companyService.deleteById(id)) {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+        return new ResponseEntity<>(id, HttpStatus.OK);
+    }
+
     @PutMapping("/company/{id}")
     public ResponseEntity<Company> updateCompany(@PathVariable("id") int id, @RequestBody Company company) {
         return ResponseEntity.ok(companyService.updateCompany(id, company));
