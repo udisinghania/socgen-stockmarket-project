@@ -1,8 +1,8 @@
 package com.stockmarket.stockexchange.entities;
-
-import javax.persistence.*;
-import java.util.List;
-import java.util.Set;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 
 @Entity
 public class Company {
@@ -19,17 +19,14 @@ public class Company {
     private String boardOfDirectors;
     private int sectorId;
 
-    @ManyToMany
-    @JoinTable(
-            joinColumns = @JoinColumn(name = "company_id"),
-            inverseJoinColumns = @JoinColumn(name = "stockexchange_id"))
-    private Set<StockExchange> stockExchange;
+    @ManyToOne
+    private StockExchange stockExchange;
 
     public Company(){
         super();
     }
 
-    public Company(int id, String name, long turnover, String ceo, String description, String companyCode, String boardOfDirectors, int sectorId, Set<StockExchange> stockExchange) {
+    public Company(int id, String name, long turnover, String ceo, String description, String companyCode, String boardOfDirectors, int sectorId, StockExchange stockExchange) {
         this.id = id;
         this.name = name;
         this.turnover = turnover;
@@ -105,11 +102,11 @@ public class Company {
         this.sectorId = sectorId;
     }
 
-    public Set<StockExchange> getStockExchange() {
+    public StockExchange getStockExchange() {
         return stockExchange;
     }
 
-    public void setStockExchange(Set<StockExchange> stockExchange) {
+    public void setStockExchange(StockExchange stockExchange) {
         this.stockExchange = stockExchange;
     }
 }

@@ -2,7 +2,11 @@ package com.stockmarket.companyservice.entities;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-import javax.persistence.*;
+import javax.persistence.Entity;
+import javax.persistence.Table;
+import javax.persistence.Id;
+import javax.persistence.GeneratedValue;
+import javax.persistence.OneToMany;
 import java.util.List;
 
 @Entity
@@ -20,12 +24,12 @@ public class Company {
     private int stockExchangeId;
     private int sectorId;
 
-   @OneToMany
-    @JsonProperty(access= JsonProperty.Access.WRITE_ONLY)
+    @OneToMany
+    @JsonProperty(access= JsonProperty.Access.READ_WRITE)
     private List<Ipo> ipos;
 
     @OneToMany
-    @JsonProperty(access= JsonProperty.Access.WRITE_ONLY)
+    @JsonProperty(access= JsonProperty.Access.READ_WRITE)
     private List<Stock> stocks;
 
     public List<Stock> getStocks(){

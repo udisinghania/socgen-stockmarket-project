@@ -1,6 +1,9 @@
 package com.stockmarket.companyservice.entities;
 
-import javax.persistence.*;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.GeneratedValue;
+import javax.persistence.ManyToOne;
 
 @Entity
 public class Stock {

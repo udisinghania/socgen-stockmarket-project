@@ -3,7 +3,15 @@ package com.stockmarket.stockexchange.entities;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-import javax.persistence.*;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.Table;
+import javax.persistence.Column;
+import javax.persistence.OneToOne;
+import javax.persistence.JoinColumn;
+import javax.persistence.CascadeType;
+import javax.persistence.OneToMany;
 import java.util.List;
 
 @Entity
@@ -23,8 +31,8 @@ public class StockExchange {
     @JsonManagedReference
     private Address address;
 
-
-    @ManyToMany(mappedBy="stockExchange")
+    @OneToMany(mappedBy="stockExchange")
+    @JsonProperty(access= JsonProperty.Access.READ_WRITE)
     private List<Company> companies;
 
     public List<Company> getCompanies(){
