@@ -16,7 +16,6 @@ public class StockExchangeService {
     @Autowired
     StockExchangeRepository stockExchangeRepository;
 
-
     public List<StockExchange> getAllStockExchanges()
     {
         List<StockExchange> stockExchanges = new ArrayList<>();
