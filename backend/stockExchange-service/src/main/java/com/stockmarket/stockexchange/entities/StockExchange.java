@@ -3,15 +3,8 @@ package com.stockmarket.stockexchange.entities;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.Table;
-import javax.persistence.Column;
-import javax.persistence.OneToOne;
-import javax.persistence.JoinColumn;
-import javax.persistence.CascadeType;
-import javax.persistence.OneToMany;
+import javax.persistence.*;
+import javax.validation.constraints.NotNull;
 import java.util.List;
 
 @Entity
@@ -22,6 +15,8 @@ public class StockExchange {
     @GeneratedValue
     @Column(name = "id")
     private int id;
+
+    @NotNull
     private String name;
     private String brief;
     private String remarks;
@@ -31,7 +26,7 @@ public class StockExchange {
     @JsonManagedReference
     private Address address;
 
-    @OneToMany(mappedBy="stockExchange")
+    @OneToMany(mappedBy="stock_exchange")
     @JsonProperty(access= JsonProperty.Access.WRITE_ONLY)
     private List<Company> companies;
 
@@ -39,16 +34,26 @@ public class StockExchange {
         return companies;
     }
 
+    @OneToMany
+    @JsonProperty(access= JsonProperty.Access.WRITE_ONLY)
+    private List<Stock> stocks;
+
+    public List<Stock> getStocks(){
+        return stocks;
+    }
+
     public StockExchange() {
         super();
     }
 
-    public StockExchange(int id, String name, String brief, String remarks, Address address) {
+    public StockExchange(int id, String name, String brief, String remarks, Address address, List<Company> companies, List<Stock> stocks) {
         this.id = id;
         this.name = name;
         this.brief = brief;
         this.remarks = remarks;
         this.address = address;
+        this.companies = companies;
+        this.stocks = stocks;
     }
 
     public int getId() {

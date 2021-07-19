@@ -8,6 +8,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import javax.validation.constraints.NotNull;
 import java.util.List;
 
 @Entity
@@ -17,7 +18,10 @@ public class Sector {
     @Id
     @GeneratedValue
     private int id;
+
+    @NotNull
     private String name;
+
     private String brief;
 
     @OneToMany(mappedBy="sector")

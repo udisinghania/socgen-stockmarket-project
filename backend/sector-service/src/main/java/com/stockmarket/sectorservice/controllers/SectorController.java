@@ -24,7 +24,7 @@ public class SectorController {
     }
 
     @GetMapping("/sectors/{id}")
-    private ResponseEntity getSector(@PathVariable("id") int sectorId)
+    private ResponseEntity getSectorById(@PathVariable("id") int sectorId)
     {
         if (sectorService.getSectorById(sectorId)!=null)
         {
@@ -33,6 +33,19 @@ public class SectorController {
         else
         {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Sector with id "+ sectorId+" not found.");
+        }
+    }
+
+    @GetMapping("/sectors/{name}")
+    private ResponseEntity getSectorByName(@PathVariable("name") String sectorName)
+    {
+        if (sectorService.getSectorByName(sectorName)!=null)
+        {
+            return ResponseEntity.ok(sectorService.getSectorByName(sectorName));
+        }
+        else
+        {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Sector with name "+ sectorName+" not found.");
         }
     }
 
@@ -57,9 +70,9 @@ public class SectorController {
         return new ResponseEntity<>(id, HttpStatus.OK);
     }
 
-    @GetMapping("/companies/{id}")
-    private ResponseEntity<List<Company>> getCompanies(@PathVariable("id") int id){
-        return ResponseEntity.ok(sectorService.getCompanies(id));
+    @GetMapping("/companies/{sectorName}")
+    private ResponseEntity<List<Company>> getCompanies(@PathVariable("sectorName") String sectorName){
+        return ResponseEntity.ok(sectorService.getCompanies(sectorName));
     }
 
 }

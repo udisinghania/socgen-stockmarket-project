@@ -32,6 +32,12 @@ public class SectorService {
 
     }
 
+    public Sector getSectorByName(String name)
+    {
+        Optional<Sector> sector = Optional.ofNullable(sectorRepository.findByName(name));
+        return sector.orElse(null);
+    }
+
     public Sector addSector(Sector sector)
     {
         return sectorRepository.save(sector);
@@ -62,8 +68,9 @@ public class SectorService {
         }
     }
 
-    public List<Company> getCompanies(int id){
-        Optional<Sector> sectorOptional = sectorRepository.findById(id);
+
+    public List<Company> getCompanies(String sectorNme){
+        Optional<Sector> sectorOptional = Optional.ofNullable(sectorRepository.findByName(sectorNme));
         return sectorOptional.map(Sector::getCompanies).orElse(null);
     }
 
@@ -76,4 +83,5 @@ public class SectorService {
         sector = sectorRepository.save(sector);
         return sector;
     }
+
 }
