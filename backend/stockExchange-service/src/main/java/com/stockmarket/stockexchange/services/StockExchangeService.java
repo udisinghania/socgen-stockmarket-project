@@ -32,9 +32,36 @@ public class StockExchangeService {
         return stockExchange.orElse(null);
     }
 
-    public void saveOrUpdate(StockExchange stockExchange)
+    public StockExchange addStockExchange(StockExchange stockExchange)
     {
-        stockExchangeRepository.save(stockExchange);
+        return stockExchangeRepository.save(stockExchange);
+    }
+
+    public Boolean deleteById(int id)
+    {
+        if(stockExchangeRepository.findById(id).isPresent())
+        {
+            stockExchangeRepository.deleteById(id);
+            return true;
+        }
+        return false;
+    }
+
+    public StockExchange updateStockExchange(int id, StockExchange stockExchange)
+    {
+        Optional<StockExchange> sector1 = stockExchangeRepository.findById(id);
+
+        if(sector1.isPresent()) {
+            StockExchange newEntity = sector1.get();
+            newEntity.setName(stockExchange.getName());
+            newEntity.setBrief(stockExchange.getBrief());
+            newEntity.setRemarks(stockExchange.getRemarks());
+            newEntity.setAddress(stockExchange.getAddress());
+            return stockExchangeRepository.save(newEntity);
+        }
+        else{
+            return stockExchangeRepository.save(stockExchange);
+        }
     }
 
     public List<Company> getCompanies(int id){

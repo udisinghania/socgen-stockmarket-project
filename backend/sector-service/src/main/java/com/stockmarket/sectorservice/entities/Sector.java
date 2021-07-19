@@ -21,7 +21,7 @@ public class Sector {
     private String brief;
 
     @OneToMany(mappedBy="sector")
-    @JsonProperty(access= JsonProperty.Access.READ_WRITE)
+    @JsonProperty(access= JsonProperty.Access.WRITE_ONLY)
     private List<Company> companies;
 
     public List<Company> getCompanies(){

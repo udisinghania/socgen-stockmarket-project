@@ -32,17 +32,22 @@ public class SectorService {
 
     }
 
-    public void addSector(Sector sector)
+    public Sector addSector(Sector sector)
     {
-        sectorRepository.save(sector);
+        return sectorRepository.save(sector);
     }
 
-    public void deleteById(int id)
+    public Boolean deleteById(int id)
     {
-        sectorRepository.deleteById(id);
+        if(sectorRepository.findById(id).isPresent())
+        {
+            sectorRepository.deleteById(id);
+            return true;
+        }
+        return false;
     }
 
-    public void updateSector(int id, Sector sector)
+    public Sector updateSector(int id, Sector sector)
     {
         Optional<Sector> sector1 = sectorRepository.findById(id);
 
@@ -50,10 +55,10 @@ public class SectorService {
             Sector newEntity = sector1.get();
             newEntity.setName(sector.getName());
             newEntity.setBrief(sector.getBrief());
-            sectorRepository.save(newEntity);
+            return sectorRepository.save(newEntity);
         }
         else{
-            sectorRepository.save(sector);
+            return sectorRepository.save(sector);
         }
     }
 
@@ -62,12 +67,12 @@ public class SectorService {
         return sectorOptional.map(Sector::getCompanies).orElse(null);
     }
 
-    public Sector addCompanyToSector(String sectorName, Company companyDto)
+    public Sector addCompanyToSector(String sectorName, Company company)
     {
         Sector sector = sectorRepository.findByName(sectorName);
         if(sector == null)
             return null;
-        sector.getCompanies().add(companyDto);
+        sector.getCompanies().add(company);
         sector = sectorRepository.save(sector);
         return sector;
     }

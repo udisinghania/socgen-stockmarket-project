@@ -17,14 +17,11 @@ public class Ipo {
     private String remarks;
 
 
-    @ManyToOne
-    private Company company;
-
     public Ipo(){
         super();
     }
 
-    public Ipo(String id, int stockExchangeId, double price, int shares, String openDateTime, String remarks, Company company) {
+    public Ipo(String id, int stockExchangeId, double price, int shares, String openDateTime, String remarks) {
         super();
         this.id = id;
         this.stockExchangeId = stockExchangeId;
@@ -32,7 +29,7 @@ public class Ipo {
         this.shares = shares;
         this.openDateTime = openDateTime;
         this.remarks = remarks;
-        this.company = company;
+
     }
 
     public String getId() {
@@ -83,11 +80,5 @@ public class Ipo {
         this.remarks = remarks;
     }
 
-    public Company getCompany() {
-        return company;
-    }
 
-    public void setCompany(Company company) {
-        this.company = company;
-    }
 }

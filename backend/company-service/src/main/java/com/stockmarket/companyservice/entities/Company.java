@@ -7,6 +7,8 @@ import javax.persistence.Table;
 import javax.persistence.Id;
 import javax.persistence.GeneratedValue;
 import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
+import javax.persistence.CascadeType;
 import java.util.List;
 
 @Entity
@@ -24,28 +26,23 @@ public class Company {
     private int stockExchangeId;
     private int sectorId;
 
-    @OneToMany
-    @JsonProperty(access= JsonProperty.Access.READ_WRITE)
-    private List<Ipo> ipos;
+    @OneToOne(cascade= {CascadeType.ALL})
+    private Ipo ipo;
 
     @OneToMany
-    @JsonProperty(access= JsonProperty.Access.READ_WRITE)
+    @JsonProperty(access= JsonProperty.Access.WRITE_ONLY)
     private List<Stock> stocks;
 
     public List<Stock> getStocks(){
         return stocks;
     }
 
-    public List<Ipo> getIpos(){
-        return ipos;
-    }
 
     public Company(){
         super();
     }
 
-    public Company(String id, String name, long turnover, String ceo, String boardOfDirectors, String description, String companyCode, int stockExchangeId, int sectorId, List<Ipo> ipos, List<Stock> stocks) {
-        super();
+    public Company(String id, String name, long turnover, String ceo, String boardOfDirectors, String description, String companyCode, int stockExchangeId, int sectorId, Ipo ipo, List<Stock> stocks) {
         this.id = id;
         this.name = name;
         this.turnover = turnover;
@@ -55,7 +52,7 @@ public class Company {
         this.companyCode = companyCode;
         this.stockExchangeId = stockExchangeId;
         this.sectorId = sectorId;
-        this.ipos = ipos;
+        this.ipo = ipo;
         this.stocks = stocks;
     }
 
