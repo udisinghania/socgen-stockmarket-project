@@ -1,6 +1,7 @@
 package com.stockmarket.excelservice.helper;
 
 import com.stockmarket.excelservice.entities.Stock;
+import org.apache.poi.hssf.usermodel.HSSFWorkbook;
 import org.apache.poi.ss.usermodel.Cell;
 import org.apache.poi.ss.usermodel.Row;
 import org.apache.poi.ss.usermodel.Sheet;
@@ -18,20 +19,12 @@ import java.util.Iterator;
 import java.util.List;
 
 public class ExcelHelper {
-    public static String TYPE = "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet";
-    static String[] HEADERs = { "Id", "Title", "Description", "Published" };
-    static String SHEET = "Tutorials";
-
-    public static boolean hasExcelFormat(MultipartFile file) {
-
-        return TYPE.equals(file.getContentType());
-    }
 
     public static List<Stock> excelToStocks(InputStream is) {
         try {
             Workbook workbook = new XSSFWorkbook(is);
 
-            Sheet sheet = workbook.getSheet(SHEET);
+            Sheet sheet = workbook.getSheetAt(0);
             Iterator<Row> rows = sheet.iterator();
 
             List<Stock> stocks = new ArrayList<Stock>();
@@ -63,7 +56,7 @@ public class ExcelHelper {
                             String url = "http://localhost:9090/stockexchange/stockexchanges/name";
                             ResponseEntity<Integer> response = restTemplate.getForEntity(url + "/"+currentCell.getStringCellValue(), Integer.class);
                             int id = response.getBody();
-                            stock.setStockExchangeId(id);
+                            stock.setStockExchangeId(7);
                             break;
                         case 3:
                             stock.setPrice(currentCell.getNumericCellValue());
