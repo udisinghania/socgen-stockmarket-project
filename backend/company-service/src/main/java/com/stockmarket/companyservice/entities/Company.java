@@ -2,7 +2,13 @@ package com.stockmarket.companyservice.entities;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-import javax.persistence.*;
+import javax.persistence.Entity;
+import javax.persistence.Table;
+import javax.persistence.Id;
+import javax.persistence.GeneratedValue;
+import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
+import javax.persistence.CascadeType;
 import java.util.List;
 
 @Entity
@@ -10,7 +16,7 @@ import java.util.List;
 public class Company {
     @Id
     @GeneratedValue
-    private String id;
+    private int id;
     private String name;
     private long turnover;
     private String ceo;
@@ -20,10 +26,6 @@ public class Company {
     private int stockExchangeId;
     private int sectorId;
 
-   @OneToMany
-    @JsonProperty(access= JsonProperty.Access.WRITE_ONLY)
-    private List<Ipo> ipos;
-
     @OneToMany
     @JsonProperty(access= JsonProperty.Access.WRITE_ONLY)
     private List<Stock> stocks;
@@ -32,16 +34,12 @@ public class Company {
         return stocks;
     }
 
-    public List<Ipo> getIpos(){
-        return ipos;
-    }
 
     public Company(){
         super();
     }
 
-    public Company(String id, String name, long turnover, String ceo, String boardOfDirectors, String description, String companyCode, int stockExchangeId, int sectorId, List<Ipo> ipos, List<Stock> stocks) {
-        super();
+    public Company(int id, String name, long turnover, String ceo, String boardOfDirectors, String description, String companyCode, int stockExchangeId, int sectorId, List<Stock> stocks) {
         this.id = id;
         this.name = name;
         this.turnover = turnover;
@@ -51,15 +49,14 @@ public class Company {
         this.companyCode = companyCode;
         this.stockExchangeId = stockExchangeId;
         this.sectorId = sectorId;
-        this.ipos = ipos;
         this.stocks = stocks;
     }
 
-    public String getId() {
+    public int getId() {
         return id;
     }
 
-    public void setId(String id) {
+    public void setId(int id) {
         this.id = id;
     }
 

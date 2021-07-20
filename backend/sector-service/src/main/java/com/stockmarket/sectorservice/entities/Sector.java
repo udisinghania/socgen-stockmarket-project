@@ -3,7 +3,12 @@ package com.stockmarket.sectorservice.entities;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-import javax.persistence.*;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.OneToMany;
+import javax.persistence.Table;
+import javax.validation.constraints.NotNull;
 import java.util.List;
 
 @Entity
@@ -13,11 +18,14 @@ public class Sector {
     @Id
     @GeneratedValue
     private int id;
+
+    @NotNull
     private String name;
+
     private String brief;
 
     @OneToMany(mappedBy="sector")
-    @JsonProperty(access= JsonProperty.Access.READ_WRITE)
+    @JsonProperty(access= JsonProperty.Access.WRITE_ONLY)
     private List<Company> companies;
 
     public List<Company> getCompanies(){

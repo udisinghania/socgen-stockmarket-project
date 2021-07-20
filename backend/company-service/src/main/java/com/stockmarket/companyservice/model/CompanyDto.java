@@ -1,38 +1,32 @@
-package com.stockmarket.stockexchange.entities;
-import javax.persistence.*;
+package com.stockmarket.companyservice.model;
 
-@Entity
-public class Company {
+import java.util.ArrayList;
 
-    @Id
-    @GeneratedValue
+public class CompanyDto {
     private int id;
-
     private String name;
     private long turnover;
     private String ceo;
+    private String boardOfDirectors;
     private String description;
     private String companyCode;
-    private String boardOfDirectors;
+    private ArrayList<Integer> stockExchangeId;
     private int sectorId;
 
-    @ManyToOne
-    private StockExchange stockExchange;
-
-    public Company(){
+    public CompanyDto(){
         super();
     }
 
-    public Company(int id, String name, long turnover, String ceo, String description, String companyCode, String boardOfDirectors, int sectorId, StockExchange stockExchange) {
+    public CompanyDto(int id, String name, long turnover, String ceo, String boardOfDirectors, String description, String companyCode, ArrayList<Integer> stockExchangeId, int sectorId) {
         this.id = id;
         this.name = name;
         this.turnover = turnover;
         this.ceo = ceo;
+        this.boardOfDirectors = boardOfDirectors;
         this.description = description;
         this.companyCode = companyCode;
-        this.boardOfDirectors = boardOfDirectors;
+        this.stockExchangeId = stockExchangeId;
         this.sectorId = sectorId;
-        this.stockExchange = stockExchange;
     }
 
     public int getId() {
@@ -67,6 +61,14 @@ public class Company {
         this.ceo = ceo;
     }
 
+    public String getBoardOfDirectors() {
+        return boardOfDirectors;
+    }
+
+    public void setBoardOfDirectors(String boardOfDirectors) {
+        this.boardOfDirectors = boardOfDirectors;
+    }
+
     public String getDescription() {
         return description;
     }
@@ -83,12 +85,12 @@ public class Company {
         this.companyCode = companyCode;
     }
 
-    public String getBoardOfDirectors() {
-        return boardOfDirectors;
+    public ArrayList<Integer> getStockExchangeId() {
+        return stockExchangeId;
     }
 
-    public void setBoardOfDirectors(String boardOfDirectors) {
-        this.boardOfDirectors = boardOfDirectors;
+    public void setStockExchangeId(ArrayList<Integer> stockExchangeId) {
+        this.stockExchangeId = stockExchangeId;
     }
 
     public int getSectorId() {
@@ -97,13 +99,5 @@ public class Company {
 
     public void setSectorId(int sectorId) {
         this.sectorId = sectorId;
-    }
-
-    public StockExchange getStockExchange() {
-        return stockExchange;
-    }
-
-    public void setStockExchange(StockExchange stockExchange) {
-        this.stockExchange = stockExchange;
     }
 }

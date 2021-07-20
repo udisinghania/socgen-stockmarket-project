@@ -32,17 +32,28 @@ public class SectorService {
 
     }
 
-    public void addSector(Sector sector)
+    public Sector getSectorByName(String name)
     {
-        sectorRepository.save(sector);
+        Optional<Sector> sector = Optional.ofNullable(sectorRepository.findByName(name));
+        return sector.orElse(null);
     }
 
-    public void deleteById(int id)
+    public Sector addSector(Sector sector)
     {
-        sectorRepository.deleteById(id);
+        return sectorRepository.save(sector);
     }
 
-    public void updateSector(int id, Sector sector)
+    public Boolean deleteById(int id)
+    {
+        if(sectorRepository.findById(id).isPresent())
+        {
+            sectorRepository.deleteById(id);
+            return true;
+        }
+        return false;
+    }
+
+    public Sector updateSector(int id, Sector sector)
     {
         Optional<Sector> sector1 = sectorRepository.findById(id);
 
@@ -50,25 +61,27 @@ public class SectorService {
             Sector newEntity = sector1.get();
             newEntity.setName(sector.getName());
             newEntity.setBrief(sector.getBrief());
-            sectorRepository.save(newEntity);
+            return sectorRepository.save(newEntity);
         }
         else{
-            sectorRepository.save(sector);
+            return sectorRepository.save(sector);
         }
     }
 
-    public List<Company> getCompanies(int id){
-        Optional<Sector> sectorOptional = sectorRepository.findById(id);
+
+    public List<Company> getCompanies(String sectorNme){
+        Optional<Sector> sectorOptional = Optional.ofNullable(sectorRepository.findByName(sectorNme));
         return sectorOptional.map(Sector::getCompanies).orElse(null);
     }
 
-    public Sector addCompanyToSector(String sectorName, Company companyDto)
+    public Sector addCompanyToSector(String sectorName, Company company)
     {
         Sector sector = sectorRepository.findByName(sectorName);
         if(sector == null)
             return null;
-        sector.getCompanies().add(companyDto);
+        sector.getCompanies().add(company);
         sector = sectorRepository.save(sector);
         return sector;
     }
+
 }

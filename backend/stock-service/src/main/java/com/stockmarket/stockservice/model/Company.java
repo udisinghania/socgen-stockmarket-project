@@ -1,38 +1,31 @@
-package com.stockmarket.stockexchange.entities;
-import javax.persistence.*;
+package com.stockmarket.stockservice.model;
 
-@Entity
 public class Company {
 
-    @Id
-    @GeneratedValue
     private int id;
-
     private String name;
-    private long turnover;
-    private String ceo;
-    private String description;
     private String companyCode;
+    private String turnover;
+    private String ceo;
     private String boardOfDirectors;
+    private int stockExchangeId;
     private int sectorId;
-
-    @ManyToOne
-    private StockExchange stockExchange;
+    private String description;
 
     public Company(){
         super();
     }
 
-    public Company(int id, String name, long turnover, String ceo, String description, String companyCode, String boardOfDirectors, int sectorId, StockExchange stockExchange) {
+    public Company(int id, String name, String companyCode, String turnover, String ceo, String boardOfDirectors, int stockExchangeId, int sectorId, String description) {
         this.id = id;
         this.name = name;
+        this.companyCode = companyCode;
         this.turnover = turnover;
         this.ceo = ceo;
-        this.description = description;
-        this.companyCode = companyCode;
         this.boardOfDirectors = boardOfDirectors;
+        this.stockExchangeId = stockExchangeId;
         this.sectorId = sectorId;
-        this.stockExchange = stockExchange;
+        this.description = description;
     }
 
     public int getId() {
@@ -51,11 +44,19 @@ public class Company {
         this.name = name;
     }
 
-    public long getTurnover() {
+    public String getCompanyCode() {
+        return companyCode;
+    }
+
+    public void setCompanyCode(String companyCode) {
+        this.companyCode = companyCode;
+    }
+
+    public String getTurnover() {
         return turnover;
     }
 
-    public void setTurnover(long turnover) {
+    public void setTurnover(String turnover) {
         this.turnover = turnover;
     }
 
@@ -67,28 +68,20 @@ public class Company {
         this.ceo = ceo;
     }
 
-    public String getDescription() {
-        return description;
-    }
-
-    public void setDescription(String description) {
-        this.description = description;
-    }
-
-    public String getCompanyCode() {
-        return companyCode;
-    }
-
-    public void setCompanyCode(String companyCode) {
-        this.companyCode = companyCode;
-    }
-
     public String getBoardOfDirectors() {
         return boardOfDirectors;
     }
 
     public void setBoardOfDirectors(String boardOfDirectors) {
         this.boardOfDirectors = boardOfDirectors;
+    }
+
+    public int getStockExchangeId() {
+        return stockExchangeId;
+    }
+
+    public void setStockExchangeId(int stockExchangeId) {
+        this.stockExchangeId = stockExchangeId;
     }
 
     public int getSectorId() {
@@ -99,11 +92,11 @@ public class Company {
         this.sectorId = sectorId;
     }
 
-    public StockExchange getStockExchange() {
-        return stockExchange;
+    public String getDescription() {
+        return description;
     }
 
-    public void setStockExchange(StockExchange stockExchange) {
-        this.stockExchange = stockExchange;
+    public void setDescription(String description) {
+        this.description = description;
     }
 }

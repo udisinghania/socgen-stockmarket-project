@@ -1,15 +1,7 @@
-package com.stockmarket.companyservice.entities;
+package com.stockmarket.excelservice.dto;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.ManyToOne;
+public class StockDto {
 
-@Entity
-public class Stock {
-
-    @Id
-    @GeneratedValue
     private int id;
     private String companyCode;
     private int stockExchangeId;
@@ -17,21 +9,17 @@ public class Stock {
     private String date;
     private String time;
 
-    @ManyToOne
-    private Company company;
-
-    public Stock(){
+    public StockDto(){
         super();
     }
 
-    public Stock(int id, String companyCode, int stockExchangeId, double price, String date, String time, Company company) {
+    public StockDto(int id, String companyCode, int stockExchangeId, double price, String date, String time) {
         this.id = id;
         this.companyCode = companyCode;
         this.stockExchangeId = stockExchangeId;
         this.price = price;
         this.date = date;
         this.time = time;
-        this.company = company;
     }
 
     public int getId() {
@@ -80,13 +68,5 @@ public class Stock {
 
     public void setTime(String time) {
         this.time = time;
-    }
-
-    public Company getCompany() {
-        return company;
-    }
-
-    public void setCompany(Company company) {
-        this.company = company;
     }
 }

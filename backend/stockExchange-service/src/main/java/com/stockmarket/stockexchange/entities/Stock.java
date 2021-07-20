@@ -1,9 +1,5 @@
-package com.stockmarket.companyservice.entities;
-
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.ManyToOne;
+package com.stockmarket.stockexchange.entities;
+import javax.persistence.*;
 
 @Entity
 public class Stock {
@@ -12,26 +8,26 @@ public class Stock {
     @GeneratedValue
     private int id;
     private String companyCode;
-    private int stockExchangeId;
+    private int companyId;
     private double price;
     private String date;
     private String time;
 
     @ManyToOne
-    private Company company;
+    private StockExchange stockExchange;
 
     public Stock(){
         super();
     }
 
-    public Stock(int id, String companyCode, int stockExchangeId, double price, String date, String time, Company company) {
+    public Stock(int id, String companyCode, int companyId, double price, String date, String time, StockExchange stockExchange) {
         this.id = id;
         this.companyCode = companyCode;
-        this.stockExchangeId = stockExchangeId;
+        this.companyId = companyId;
         this.price = price;
         this.date = date;
         this.time = time;
-        this.company = company;
+        this.stockExchange = stockExchange;
     }
 
     public int getId() {
@@ -50,13 +46,6 @@ public class Stock {
         this.companyCode = companyCode;
     }
 
-    public int getStockExchangeId() {
-        return stockExchangeId;
-    }
-
-    public void setStockExchangeId(int stockExchangeId) {
-        this.stockExchangeId = stockExchangeId;
-    }
 
     public double getPrice() {
         return price;
@@ -82,11 +71,19 @@ public class Stock {
         this.time = time;
     }
 
-    public Company getCompany() {
-        return company;
+    public int getCompanyId() {
+        return companyId;
     }
 
-    public void setCompany(Company company) {
-        this.company = company;
+    public void setCompanyId(int companyId) {
+        this.companyId = companyId;
+    }
+
+    public StockExchange getStockExchange() {
+        return stockExchange;
+    }
+
+    public void setStockExchange(StockExchange stockExchange) {
+        this.stockExchange = stockExchange;
     }
 }
