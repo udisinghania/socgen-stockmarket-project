@@ -3,7 +3,7 @@ package com.stockmarket.stockservice.model;
 public class SectorCompareRequest {
 
     private String sectorName;
-    private String stockExchangeName;
+    private int stockExchangeId;
     private String fromPeriod;
     private String toPeriod;
     private String periodicity;
@@ -12,10 +12,10 @@ public class SectorCompareRequest {
         super();
     }
 
-    public SectorCompareRequest(String sectorName, String stockExchangeName, String fromPeriod, String toPeriod, String periodicity) {
+    public SectorCompareRequest(String sectorName, int stockExchangeId, String fromPeriod, String toPeriod, String periodicity) {
         super();
         this.sectorName = sectorName;
-        this.stockExchangeName = stockExchangeName;
+        this.stockExchangeId = stockExchangeId;
         this.fromPeriod = fromPeriod;
         this.toPeriod = toPeriod;
         this.periodicity = periodicity;
@@ -29,12 +29,12 @@ public class SectorCompareRequest {
         this.sectorName = sectorName;
     }
 
-    public String getStockExchangeName() {
-        return stockExchangeName;
+    public int getStockExchangeId() {
+        return stockExchangeId;
     }
 
-    public void setStockExchangeName(String stockExchangeName) {
-        this.stockExchangeName = stockExchangeName;
+    public void setStockExchangeId(int stockExchangeId) {
+        this.stockExchangeId = stockExchangeId;
     }
 
     public String getFromPeriod() {

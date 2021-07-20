@@ -12,10 +12,7 @@ import org.springframework.web.client.RestTemplate;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
-import java.util.Optional;
+import java.util.*;
 import java.util.stream.Collectors;
 
 @Service
@@ -31,7 +28,7 @@ public class StockService {
         return stocks;
     }
 
-    public Stock getStockById(int id)
+    public Stock getStockById(String id)
     {
         Optional<Stock> stock = stockRepository.findById(id);
         return stock.orElse(null);
@@ -44,7 +41,7 @@ public class StockService {
         return stockRepository.save(stock);
     }
 
-    public Boolean deleteById(int id)
+    public Boolean deleteById(String id)
     {
         if(stockRepository.findById(id).isPresent())
         {
@@ -58,15 +55,22 @@ public class StockService {
         Date fromDate = new SimpleDateFormat("dd-MM-yyyy").parse(compareRequest.getFromPeriod());
         Date toDate = new SimpleDateFormat("dd-MM-yyyy").parse(compareRequest.getToPeriod());
 
-        RestTemplate restTemplate = new RestTemplate();
-        String fooResourceUrl = "http://localhost:9090/stockExchanges/stockExchange";
-        ResponseEntity<String> response = restTemplate.getForEntity(fooResourceUrl + "/"+compareRequest.getStockExchangeName(), String.class);
-
         List<Stock> stockPrices = stockRepository
-                .findByCompanyCodeAndStockExchangeName(compareRequest.getCompanyCode(), compareRequest.getStockExchangeName());
+                .findByCompanyCodeAndStockExchangeId(compareRequest.getCompanyCode(), compareRequest.getStockExchangeId());
+        List<Stock> filteredList = stockPrices.stream()
+                .filter(stockPrice -> {
+                    Date date = null;
+                    try {
+                        date = new SimpleDateFormat("dd-MM-yyyy").parse(stockPrice.getDate());
+                    } catch (ParseException e) {
+                        e.printStackTrace();
+                    }
+                    assert date != null;
+                    return date.after(fromDate) && date.before(toDate);
+                })
+                .collect(Collectors.toList());
 
-
-        return new ArrayList<Stock>();
+        return filteredList;
     }
 
     public List<Stock> getStockPricesForSector(SectorCompareRequest compareRequest) throws ParseException{
@@ -77,10 +81,28 @@ public class StockService {
         String fooResourceUrl = "http://localhost:9091/sector/companies";
         ResponseEntity<Company[]> response = restTemplate.getForEntity(fooResourceUrl + "/"+compareRequest.getSectorName(), Company[].class);
         Company[] companies = response.getBody();
+        System.out.println(Arrays.toString(companies));
+        assert companies != null;
+        for(Company company: companies)
+        {
+            List<Stock> stockPrices = stockRepository
+                    .findByCompanyCodeAndStockExchangeId(company.getCompanyCode(), compareRequest.getStockExchangeId());
+            List<Stock> filteredList = stockPrices.stream()
+                    .filter(stockPrice -> {
+                        Date date = null;
+                        try {
+                            date = new SimpleDateFormat("dd-MM-yyyy").parse(stockPrice.getDate());
+                        } catch (ParseException e) {
+                            e.printStackTrace();
+                        }
 
+                        assert date != null;
+                        return date.after(fromDate) && date.before(toDate);
+                    })
+                    .collect(Collectors.toList());
+            stockPricesForSector.addAll(filteredList);
+        }
 
-
-
-        return new ArrayList<Stock>();
+        return stockPricesForSector;
     }
 }

@@ -2,7 +2,7 @@ package com.stockmarket.stockservice.model;
 
 public class CompanyCompareRequest {
     private String companyCode;
-    private String stockExchangeName;
+    private int stockExchangeId;
     private String fromPeriod;
     private String toPeriod;
     private String periodicity;
@@ -11,9 +11,9 @@ public class CompanyCompareRequest {
         super();
     }
 
-    public CompanyCompareRequest(String companyCode, String stockExchangeName, String fromPeriod, String toPeriod, String periodicity) {
+    public CompanyCompareRequest(String companyCode, int stockExchangeId, String fromPeriod, String toPeriod, String periodicity) {
         this.companyCode = companyCode;
-        this.stockExchangeName = stockExchangeName;
+        this.stockExchangeId = stockExchangeId;
         this.fromPeriod = fromPeriod;
         this.toPeriod = toPeriod;
         this.periodicity = periodicity;
@@ -27,12 +27,12 @@ public class CompanyCompareRequest {
         this.companyCode = companyCode;
     }
 
-    public String getStockExchangeName() {
-        return stockExchangeName;
+    public int getStockExchangeId() {
+        return stockExchangeId;
     }
 
-    public void setStockExchangeName(String stockExchangeName) {
-        this.stockExchangeName = stockExchangeName;
+    public void setStockExchangeId(int stockExchangeId) {
+        this.stockExchangeId = stockExchangeId;
     }
 
     public String getFromPeriod() {
