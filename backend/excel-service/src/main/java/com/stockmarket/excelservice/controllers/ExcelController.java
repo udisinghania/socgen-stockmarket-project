@@ -17,7 +17,7 @@ import java.util.List;
 public class ExcelController {
 
     @Autowired
-    ExcelService fileService;
+    ExcelService excelService;
 
     @PostMapping("/upload")
     public ResponseEntity<ResponseMessage> uploadFile(@RequestParam("file") MultipartFile file) {
@@ -25,7 +25,7 @@ public class ExcelController {
 
         if (ExcelHelper.hasExcelFormat(file)) {
             try {
-                fileService.save(file);
+                excelService.save(file);
 
                 message = "Uploaded the file successfully: " + file.getOriginalFilename();
                 return ResponseEntity.status(HttpStatus.OK).body(new ResponseMessage(message));
@@ -42,7 +42,7 @@ public class ExcelController {
     @GetMapping("/stocks")
     public ResponseEntity<List<Stock>> getAllStocks() {
         try {
-            List<Stock> tutorials = fileService.getAllStocks();
+            List<Stock> tutorials = excelService.getAllStocks();
 
             if (tutorials.isEmpty()) {
                 return new ResponseEntity<>(HttpStatus.NO_CONTENT);

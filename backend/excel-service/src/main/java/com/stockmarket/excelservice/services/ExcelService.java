@@ -4,11 +4,13 @@ import com.stockmarket.excelservice.entities.Stock;
 import com.stockmarket.excelservice.helper.ExcelHelper;
 import com.stockmarket.excelservice.repositories.StockRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.IOException;
 import java.util.List;
 
+@Service
 public class ExcelService {
 
     @Autowired
