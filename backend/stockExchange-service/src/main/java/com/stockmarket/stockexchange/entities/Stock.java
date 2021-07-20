@@ -1,14 +1,12 @@
 package com.stockmarket.stockexchange.entities;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
+import javax.persistence.*;
 
 @Entity
 public class Stock {
 
     @Id
-    private String id;
+    @GeneratedValue
+    private int id;
     private String companyCode;
     private int companyId;
     private double price;
@@ -22,7 +20,7 @@ public class Stock {
         super();
     }
 
-    public Stock(String id, String companyCode, int companyId, double price, String date, String time, StockExchange stockExchange) {
+    public Stock(int id, String companyCode, int companyId, double price, String date, String time, StockExchange stockExchange) {
         this.id = id;
         this.companyCode = companyCode;
         this.companyId = companyId;
@@ -32,11 +30,11 @@ public class Stock {
         this.stockExchange = stockExchange;
     }
 
-    public String getId() {
+    public int getId() {
         return id;
     }
 
-    public void setId(String id) {
+    public void setId(int id) {
         this.id = id;
     }
 

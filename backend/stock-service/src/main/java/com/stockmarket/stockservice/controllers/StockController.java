@@ -32,13 +32,13 @@ public class StockController {
     }
 
     @GetMapping("/stocks/{id}")
-    public ResponseEntity getStockById(@PathVariable("id") String id){
+    public ResponseEntity getStockById(@PathVariable("id") int id){
         Optional<Stock> stockOptional = Optional.ofNullable(stockService.getStockById(id));
         return stockOptional.isPresent()?ResponseEntity.ok(stockOptional.get()): ResponseEntity.status(HttpStatus.NOT_FOUND).body("Stock with id "+id+" not found.");
     }
 
     @DeleteMapping("/stocks/{id}")
-    private ResponseEntity deleteStock(@PathVariable String id){
+    private ResponseEntity deleteStock(@PathVariable int id){
 
         if (!stockService.deleteById(id)) {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);

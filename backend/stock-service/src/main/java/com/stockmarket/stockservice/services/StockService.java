@@ -28,7 +28,7 @@ public class StockService {
         return stocks;
     }
 
-    public Stock getStockById(String id)
+    public Stock getStockById(int id)
     {
         Optional<Stock> stock = stockRepository.findById(id);
         return stock.orElse(null);
@@ -41,7 +41,7 @@ public class StockService {
         return stockRepository.save(stock);
     }
 
-    public Boolean deleteById(String id)
+    public Boolean deleteById(int id)
     {
         if(stockRepository.findById(id).isPresent())
         {
@@ -81,7 +81,6 @@ public class StockService {
         String fooResourceUrl = "http://localhost:9091/sector/companies";
         ResponseEntity<Company[]> response = restTemplate.getForEntity(fooResourceUrl + "/"+compareRequest.getSectorName(), Company[].class);
         Company[] companies = response.getBody();
-        System.out.println(Arrays.toString(companies));
         assert companies != null;
         for(Company company: companies)
         {

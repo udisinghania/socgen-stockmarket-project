@@ -57,6 +57,19 @@ public class StockExchangeController {
         return new ResponseEntity<>(id, HttpStatus.OK);
     }
 
+    @GetMapping("/stockexchanges/name/{name}")
+    private ResponseEntity getStockExchangeByName(@PathVariable("name") String stockExchangeName)
+    {
+        if (stockExchangeService.getStockExchangeByName(stockExchangeName)!=null)
+        {
+            return ResponseEntity.ok(stockExchangeService.getStockExchangeByName(stockExchangeName).getId());
+        }
+        else
+        {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Sector with name "+ stockExchangeName+" not found.");
+        }
+    }
+
     @GetMapping("/companies/{id}")
     private ResponseEntity<List<Company>> getCompanies(@PathVariable("id") int id){
         return ResponseEntity.ok(stockExchangeService.getCompanies(id));

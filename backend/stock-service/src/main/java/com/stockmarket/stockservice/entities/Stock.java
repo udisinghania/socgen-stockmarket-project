@@ -1,11 +1,15 @@
 package com.stockmarket.stockservice.entities;
 
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 
+@Entity
 public class Stock {
     @Id
-    private String id;
+    @GeneratedValue
+    private int id;
     private String companyCode;
     private int stockExchangeId;
     private double price;
@@ -16,8 +20,7 @@ public class Stock {
         super();
     }
 
-    public Stock(String id, String companyCode, int stockExchangeId, double price, String date, String time) {
-        super();
+    public Stock(int id, String companyCode, int stockExchangeId, double price, String date, String time) {
         this.id = id;
         this.companyCode = companyCode;
         this.stockExchangeId = stockExchangeId;
@@ -26,11 +29,11 @@ public class Stock {
         this.time = time;
     }
 
-    public String getId() {
+    public int getId() {
         return id;
     }
 
-    public void setId(String id) {
+    public void setId(int id) {
         this.id = id;
     }
 

@@ -75,6 +75,13 @@ public class StockExchangeService {
         }
     }
 
+
+    public StockExchange getStockExchangeByName(String name)
+    {
+        Optional<StockExchange> stockExchange = Optional.ofNullable(stockExchangeRepository.findByName(name));
+        return stockExchange.orElse(null);
+    }
+
     public List<Company> getCompanies(int id){
         Optional<StockExchange> stockExchangeOptional = stockExchangeRepository.findById(id);
         return stockExchangeOptional.map(StockExchange::getCompanies).orElse(null);

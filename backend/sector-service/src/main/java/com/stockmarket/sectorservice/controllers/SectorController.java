@@ -70,6 +70,8 @@ public class SectorController {
         return new ResponseEntity<>(id, HttpStatus.OK);
     }
 
+
+
     @GetMapping("/companies/{sectorName}")
     private ResponseEntity<List<Company>> getCompanies(@PathVariable("sectorName") String sectorName){
         return ResponseEntity.ok(sectorService.getCompanies(sectorName));
