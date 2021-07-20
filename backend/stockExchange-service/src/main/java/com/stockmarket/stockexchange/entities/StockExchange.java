@@ -26,7 +26,7 @@ public class StockExchange {
     @JsonManagedReference
     private Address address;
 
-    @OneToMany(mappedBy="stock_exchange")
+    @OneToMany(mappedBy="stockExchange")
     @JsonProperty(access= JsonProperty.Access.WRITE_ONLY)
     private List<Company> companies;
 

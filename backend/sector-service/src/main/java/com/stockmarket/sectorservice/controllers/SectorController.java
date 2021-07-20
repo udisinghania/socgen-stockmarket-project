@@ -23,8 +23,8 @@ public class SectorController {
         return ResponseEntity.ok(sectorService.getAllSectors());
     }
 
-    @GetMapping("/sectors/{id}")
-    private ResponseEntity getSectorById(@PathVariable("id") int sectorId)
+    @GetMapping("/sectors/{sectorid}")
+    private ResponseEntity getSectorById(@PathVariable("sectorid") int sectorId)
     {
         if (sectorService.getSectorById(sectorId)!=null)
         {
@@ -36,7 +36,7 @@ public class SectorController {
         }
     }
 
-    @GetMapping("/sectors/{name}")
+    @GetMapping("/sectors/name/{name}")
     private ResponseEntity getSectorByName(@PathVariable("name") String sectorName)
     {
         if (sectorService.getSectorByName(sectorName)!=null)

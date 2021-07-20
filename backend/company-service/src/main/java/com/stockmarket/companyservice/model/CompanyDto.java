@@ -1,21 +1,8 @@
-package com.stockmarket.companyservice.entities;
+package com.stockmarket.companyservice.model;
 
-import com.fasterxml.jackson.annotation.JsonProperty;
+import java.util.ArrayList;
 
-import javax.persistence.Entity;
-import javax.persistence.Table;
-import javax.persistence.Id;
-import javax.persistence.GeneratedValue;
-import javax.persistence.OneToMany;
-import javax.persistence.OneToOne;
-import javax.persistence.CascadeType;
-import java.util.List;
-
-@Entity
-@Table(name = "company")
-public class Company {
-    @Id
-    @GeneratedValue
+public class CompanyDto {
     private int id;
     private String name;
     private long turnover;
@@ -23,23 +10,14 @@ public class Company {
     private String boardOfDirectors;
     private String description;
     private String companyCode;
-    private int stockExchangeId;
+    private ArrayList<Integer> stockExchangeId;
     private int sectorId;
 
-    @OneToMany
-    @JsonProperty(access= JsonProperty.Access.WRITE_ONLY)
-    private List<Stock> stocks;
-
-    public List<Stock> getStocks(){
-        return stocks;
-    }
-
-
-    public Company(){
+    public CompanyDto(){
         super();
     }
 
-    public Company(int id, String name, long turnover, String ceo, String boardOfDirectors, String description, String companyCode, int stockExchangeId, int sectorId, List<Stock> stocks) {
+    public CompanyDto(int id, String name, long turnover, String ceo, String boardOfDirectors, String description, String companyCode, ArrayList<Integer> stockExchangeId, int sectorId) {
         this.id = id;
         this.name = name;
         this.turnover = turnover;
@@ -49,7 +27,6 @@ public class Company {
         this.companyCode = companyCode;
         this.stockExchangeId = stockExchangeId;
         this.sectorId = sectorId;
-        this.stocks = stocks;
     }
 
     public int getId() {
@@ -108,11 +85,11 @@ public class Company {
         this.companyCode = companyCode;
     }
 
-    public int getStockExchangeId() {
+    public ArrayList<Integer> getStockExchangeId() {
         return stockExchangeId;
     }
 
-    public void setStockExchangeId(int stockExchangeId) {
+    public void setStockExchangeId(ArrayList<Integer> stockExchangeId) {
         this.stockExchangeId = stockExchangeId;
     }
 

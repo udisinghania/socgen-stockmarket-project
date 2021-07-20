@@ -1,6 +1,7 @@
 package com.stockmarket.companyservice.controllers;
 
 import com.stockmarket.companyservice.entities.Company;
+import com.stockmarket.companyservice.model.CompanyDto;
 import com.stockmarket.companyservice.services.CompanyService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -17,7 +18,7 @@ public class CompanyController {
     @Autowired
     CompanyService companyService;
 
-    @GetMapping("/companies")
+    @GetMapping("/company")
     public ResponseEntity<List<Company>> getAllCompanies(){
         return ResponseEntity.ok(companyService.getAllCompanies());
     }

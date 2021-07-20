@@ -1,7 +1,9 @@
 package com.stockmarket.stockexchange.services;
 
+import com.stockmarket.stockexchange.entities.Address;
 import com.stockmarket.stockexchange.entities.Company;
 import com.stockmarket.stockexchange.entities.StockExchange;
+import com.stockmarket.stockexchange.repositories.AddressRepository;
 import com.stockmarket.stockexchange.repositories.StockExchangeRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -15,6 +17,9 @@ public class StockExchangeService {
 
     @Autowired
     StockExchangeRepository stockExchangeRepository;
+
+    @Autowired
+    AddressRepository addressRepository;
 
     public List<StockExchange> getAllStockExchanges()
     {
@@ -49,14 +54,21 @@ public class StockExchangeService {
     public StockExchange updateStockExchange(int id, StockExchange stockExchange)
     {
         Optional<StockExchange> stockExchange1 = stockExchangeRepository.findById(id);
-
-        if(stockExchange1.isPresent()) {
+        Optional<Address> address = addressRepository.findById(id+1);
+        if(stockExchange1.isPresent() && address.isPresent()) {
             StockExchange newEntity = stockExchange1.get();
+            Address address1 = address.get();
             newEntity.setName(stockExchange.getName());
             newEntity.setBrief(stockExchange.getBrief());
             newEntity.setRemarks(stockExchange.getRemarks());
-            newEntity.setAddress(stockExchange.getAddress());
-            return stockExchangeRepository.save(newEntity);
+            address1.setHouseNo(stockExchange.getAddress().getHouseNo());
+            address1.setPin(stockExchange.getAddress().getPin());
+            address1.setCity(stockExchange.getAddress().getCity());
+            address1.setState(stockExchange.getAddress().getState());
+            address1.setCountry(stockExchange.getAddress().getCountry());
+            newEntity.setAddress(address1);
+            newEntity = stockExchangeRepository.save(newEntity);
+            return newEntity;
         }
         else{
             return stockExchangeRepository.save(stockExchange);

@@ -32,7 +32,7 @@ public class StockExchangeController {
         }
         else
         {
-            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Sector with id "+ exchangeId+" not found.");
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("StockExchange with id "+ exchangeId+" not found.");
         }
     }
 

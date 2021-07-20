@@ -7,7 +7,7 @@ import javax.persistence.OneToOne;
 @Entity
 public class Ipo {
     @Id
-    private String id;
+    private int id;
     private int stockExchangeId;
     private double price;
     private int shares;
@@ -21,7 +21,7 @@ public class Ipo {
         super();
     }
 
-    public Ipo(String id, int stockExchangeId, double price, int shares, String openDateTime, String remarks, Company company) {
+    public Ipo(int id, int stockExchangeId, double price, int shares, String openDateTime, String remarks, Company company) {
         this.id = id;
         this.stockExchangeId = stockExchangeId;
         this.price = price;
@@ -31,11 +31,11 @@ public class Ipo {
         this.company = company;
     }
 
-    public String getId() {
+    public int getId() {
         return id;
     }
 
-    public void setId(String id) {
+    public void setId(int id) {
         this.id = id;
     }
 
