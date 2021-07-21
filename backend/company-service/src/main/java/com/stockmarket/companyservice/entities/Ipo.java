@@ -1,34 +1,48 @@
 package com.stockmarket.companyservice.entities;
+import java.sql.Timestamp;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToOne;
 
 @Entity
 public class Ipo {
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
-    private int stockExchangeId;
+
+    @Column(name="price_per_share")
     private double price;
+
+    @Column(name="total_shares")
     private int shares;
-    private String openDateTime;
+
+    @Column(name="open_datetime")
+    private Timestamp dateTime;
+
     private String remarks;
 
     @OneToOne
     private Company company;
 
+    @OneToOne
+    private StockExchange stockExchange;
+
     public Ipo(){
         super();
     }
 
-    public Ipo(int id, int stockExchangeId, double price, int shares, String openDateTime, String remarks, Company company) {
+    public Ipo(int id, double price, int shares, Timestamp dateTime, String remarks, Company company, StockExchange stockExchange) {
         this.id = id;
-        this.stockExchangeId = stockExchangeId;
         this.price = price;
         this.shares = shares;
-        this.openDateTime = openDateTime;
+        this.dateTime = dateTime;
         this.remarks = remarks;
         this.company = company;
+        this.stockExchange = stockExchange;
     }
 
     public int getId() {
@@ -39,12 +53,12 @@ public class Ipo {
         this.id = id;
     }
 
-    public int getStockExchangeId() {
-        return stockExchangeId;
+    public StockExchange getStockExchange() {
+        return stockExchange;
     }
 
-    public void setStockExchangeId(int stockExchangeId) {
-        this.stockExchangeId = stockExchangeId;
+    public void setStockExchange(StockExchange stockExchange) {
+        this.stockExchange = stockExchange;
     }
 
     public double getPrice() {
@@ -63,12 +77,12 @@ public class Ipo {
         this.shares = shares;
     }
 
-    public String getOpenDateTime() {
-        return openDateTime;
+    public Timestamp getDateTime() {
+        return dateTime;
     }
 
-    public void setOpenDateTime(String openDateTime) {
-        this.openDateTime = openDateTime;
+    public void setDateTime(Timestamp dateTime) {
+        this.dateTime = dateTime;
     }
 
     public String getRemarks() {

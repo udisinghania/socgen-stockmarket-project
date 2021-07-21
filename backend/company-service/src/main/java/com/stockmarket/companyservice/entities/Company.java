@@ -1,55 +1,43 @@
 package com.stockmarket.companyservice.entities;
 
-import com.fasterxml.jackson.annotation.JsonProperty;
-
 import javax.persistence.Entity;
-import javax.persistence.Table;
-import javax.persistence.Id;
 import javax.persistence.GeneratedValue;
-import javax.persistence.OneToMany;
-import javax.persistence.OneToOne;
-import javax.persistence.CascadeType;
-import java.util.List;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 
 @Entity
-@Table(name = "company")
 public class Company {
+
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
+
     private String name;
+
     private long turnover;
+
     private String ceo;
-    private String boardOfDirectors;
+
     private String description;
-    private String companyCode;
-    private int stockExchangeId;
-    private int sectorId;
 
-    @OneToMany
-    @JsonProperty(access= JsonProperty.Access.WRITE_ONLY)
-    private List<Stock> stocks;
+    private String boardOfDirectors;
 
-    public List<Stock> getStocks(){
-        return stocks;
-    }
+    @ManyToOne
+    private Sector sector;
 
-
-    public Company(){
+    public Company() {
         super();
     }
 
-    public Company(int id, String name, long turnover, String ceo, String boardOfDirectors, String description, String companyCode, int stockExchangeId, int sectorId, List<Stock> stocks) {
+    public Company(int id, String name, long turnover, String ceo, String description, Sector sector) {
+        super();
         this.id = id;
         this.name = name;
         this.turnover = turnover;
         this.ceo = ceo;
-        this.boardOfDirectors = boardOfDirectors;
         this.description = description;
-        this.companyCode = companyCode;
-        this.stockExchangeId = stockExchangeId;
-        this.sectorId = sectorId;
-        this.stocks = stocks;
+        this.sector = sector;
     }
 
     public int getId() {
@@ -84,14 +72,6 @@ public class Company {
         this.ceo = ceo;
     }
 
-    public String getBoardOfDirectors() {
-        return boardOfDirectors;
-    }
-
-    public void setBoardOfDirectors(String boardOfDirectors) {
-        this.boardOfDirectors = boardOfDirectors;
-    }
-
     public String getDescription() {
         return description;
     }
@@ -100,27 +80,21 @@ public class Company {
         this.description = description;
     }
 
-    public String getCompanyCode() {
-        return companyCode;
+    public String getBoardOfDirectors() {
+        return boardOfDirectors;
     }
 
-    public void setCompanyCode(String companyCode) {
-        this.companyCode = companyCode;
+    public void setBoardOfDirectors(String boardOfDirectors) {
+        this.boardOfDirectors = boardOfDirectors;
     }
 
-    public int getStockExchangeId() {
-        return stockExchangeId;
+    public Sector getSector() {
+        return sector;
     }
 
-    public void setStockExchangeId(int stockExchangeId) {
-        this.stockExchangeId = stockExchangeId;
+    public void setSector(Sector sector) {
+        this.sector = sector;
     }
 
-    public int getSectorId() {
-        return sectorId;
-    }
 
-    public void setSectorId(int sectorId) {
-        this.sectorId = sectorId;
-    }
 }

@@ -1,7 +1,6 @@
 package com.stockmarket.stockexchange.services;
 
 import com.stockmarket.stockexchange.entities.Address;
-import com.stockmarket.stockexchange.entities.Company;
 import com.stockmarket.stockexchange.entities.StockExchange;
 import com.stockmarket.stockexchange.repositories.AddressRepository;
 import com.stockmarket.stockexchange.repositories.StockExchangeRepository;
@@ -54,7 +53,7 @@ public class StockExchangeService {
     public StockExchange updateStockExchange(int id, StockExchange stockExchange)
     {
         Optional<StockExchange> stockExchange1 = stockExchangeRepository.findById(id);
-        Optional<Address> address = addressRepository.findById(id+1);
+        Optional<Address> address = addressRepository.findById(id);
         if(stockExchange1.isPresent() && address.isPresent()) {
             StockExchange newEntity = stockExchange1.get();
             Address address1 = address.get();
@@ -82,19 +81,5 @@ public class StockExchangeService {
         return stockExchange.orElse(null);
     }
 
-    public List<Company> getCompanies(int id){
-        Optional<StockExchange> stockExchangeOptional = stockExchangeRepository.findById(id);
-        return stockExchangeOptional.map(StockExchange::getCompanies).orElse(null);
-    }
-
-    public StockExchange addCompanyToStockExchange(String stockExchangeName, Company companyDto)
-    {
-        StockExchange stockExchange = stockExchangeRepository.findByName(stockExchangeName);
-        if(stockExchange == null)
-            return null;
-        stockExchange.getCompanies().add(companyDto);
-        stockExchange = stockExchangeRepository.save(stockExchange);
-        return stockExchange;
-    }
 
 }

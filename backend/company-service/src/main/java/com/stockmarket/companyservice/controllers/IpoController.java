@@ -49,4 +49,10 @@ public class IpoController {
         return ipo!=null? ResponseEntity.ok(ipo): ResponseEntity.status(HttpStatus.NOT_FOUND).body("No IPO found with company id "+companyId);
     }
 
+    @PutMapping("/ipo/{id}")
+    public ResponseEntity<?> updateIpoData(@PathVariable int id,@RequestBody Ipo ipo){
+        Ipo updatedIpo = ipoService.updateIpo(id, ipo);
+        return updatedIpo==null?ResponseEntity.ok("IPO with id "+id+" not found."):ResponseEntity.ok(updatedIpo);
+    }
+
 }

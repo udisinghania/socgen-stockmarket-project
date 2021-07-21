@@ -1,37 +1,33 @@
 package com.stockmarket.companyservice.entities;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.ManyToOne;
+import javax.persistence.*;
 
 @Entity
 public class Stock {
 
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
-    private String companyCode;
-    private int stockExchangeId;
-    private double price;
-    private String date;
-    private String time;
+
+    @Column(name="stock_code")
+    private String stockCode;
 
     @ManyToOne
     private Company company;
 
-    public Stock(){
+    @ManyToOne
+    private StockExchange stockExchange;
+
+    public Stock() {
         super();
     }
 
-    public Stock(int id, String companyCode, int stockExchangeId, double price, String date, String time, Company company) {
+    public Stock(int id, String stockCode, Company company, StockExchange stockExchange) {
+        super();
         this.id = id;
-        this.companyCode = companyCode;
-        this.stockExchangeId = stockExchangeId;
-        this.price = price;
-        this.date = date;
-        this.time = time;
+        this.stockCode = stockCode;
         this.company = company;
+        this.stockExchange = stockExchange;
     }
 
     public int getId() {
@@ -42,44 +38,12 @@ public class Stock {
         this.id = id;
     }
 
-    public String getCompanyCode() {
-        return companyCode;
+    public String getStockCode() {
+        return stockCode;
     }
 
-    public void setCompanyCode(String companyCode) {
-        this.companyCode = companyCode;
-    }
-
-    public int getStockExchangeId() {
-        return stockExchangeId;
-    }
-
-    public void setStockExchangeId(int stockExchangeId) {
-        this.stockExchangeId = stockExchangeId;
-    }
-
-    public double getPrice() {
-        return price;
-    }
-
-    public void setPrice(double price) {
-        this.price = price;
-    }
-
-    public String getDate() {
-        return date;
-    }
-
-    public void setDate(String date) {
-        this.date = date;
-    }
-
-    public String getTime() {
-        return time;
-    }
-
-    public void setTime(String time) {
-        this.time = time;
+    public void setStockCode(String stockCode) {
+        this.stockCode = stockCode;
     }
 
     public Company getCompany() {
@@ -89,4 +53,13 @@ public class Stock {
     public void setCompany(Company company) {
         this.company = company;
     }
+
+    public StockExchange getStockExchange() {
+        return stockExchange;
+    }
+
+    public void setStockExchange(StockExchange stockExchange) {
+        this.stockExchange = stockExchange;
+    }
+
 }

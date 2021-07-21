@@ -1,6 +1,4 @@
-package com.stockmarket.stockexchange.entities;
-
-import com.fasterxml.jackson.annotation.JsonBackReference;
+package com.stockmarket.companyservice.entities;
 
 import javax.persistence.*;
 
@@ -83,19 +81,4 @@ public class Address {
         this.country = country;
     }
 
-
-
-    @Override
-    public String toString() {
-
-        StringBuilder strb = new StringBuilder("Address{" +
-                "id=" + id +
-                ", houseNo='" + houseNo + '\'' +
-                ", city='" + city + '\'' +
-                ", pin='" + pin + '\'' +
-                ", state='" + state + '\'' +
-                ", country='" + country + '\'' +
-                '}');
-        return strb.toString();
-    }
 }

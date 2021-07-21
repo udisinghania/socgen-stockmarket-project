@@ -1,35 +1,40 @@
-package com.stockmarket.stockexchange.entities;
+package com.stockmarket.companyservice.entities;
 
-import com.fasterxml.jackson.annotation.JsonManagedReference;
-import com.fasterxml.jackson.annotation.JsonProperty;
-
-import javax.persistence.*;
-import javax.validation.constraints.NotNull;
-import java.util.List;
+import javax.persistence.CascadeType;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.OneToOne;
+import javax.persistence.Table;
 
 @Entity
-@Table(name = "stockExchange")
+@Table(name="STOCK_EXCHANGE")
 public class StockExchange {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id")
     private int id;
 
-    @NotNull
     private String name;
     private String brief;
     private String remarks;
 
     @OneToOne(cascade = {CascadeType.ALL})
-    @JoinColumn(name = "address_id", referencedColumnName = "id")
     private Address address;
-
 
     public StockExchange() {
         super();
     }
 
+    public StockExchange(int id, String name, String brief, String remarks, Address addressId) {
+        super();
+        this.id = id;
+        this.name = name;
+        this.brief = brief;
+        this.remarks = remarks;
+        this.address = addressId;
+    }
 
     public int getId() {
         return id;
@@ -71,16 +76,4 @@ public class StockExchange {
         this.address = address;
     }
 
-    @Override
-    public String toString() {
-
-        StringBuilder strb = new StringBuilder("StockExchange{" +
-                "id=" + id +
-                ", brief='" + brief + '\'' +
-                ", remarks='" + remarks + '\'' +
-                ", name=" + name +
-                ", address=" + address +
-                '}');
-        return strb.toString();
-    }
 }
