@@ -3,6 +3,7 @@ package com.stockmarket.sectorservice;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
+import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 import springfox.documentation.builders.RequestHandlerSelectors;
 import springfox.documentation.service.ApiInfo;
 import springfox.documentation.service.Contact;
@@ -16,6 +17,7 @@ import java.util.Collections;
 
 
 @EnableSwagger2
+@EnableWebMvc
 @SpringBootApplication
 @EnableDiscoveryClient
 public class SectorServiceApplication {
