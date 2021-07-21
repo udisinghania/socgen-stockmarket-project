@@ -12,7 +12,7 @@ import java.util.List;
 import java.util.Optional;
 
 @RestController
-@RequestMapping("/ipos")
+@RequestMapping("/company")
 public class IpoController {
 
     @Autowired
