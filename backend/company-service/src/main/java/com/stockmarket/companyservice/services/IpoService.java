@@ -18,7 +18,7 @@ public class IpoService {
 
     public List<Ipo> getAllIpos()
     {
-        return ipoRepository.findAllByOrderByOpenDateTimeAsc();
+        return ipoRepository.findAllByOrderByDateTimeAsc();
     }
 
     public Ipo getIpoById(int id)

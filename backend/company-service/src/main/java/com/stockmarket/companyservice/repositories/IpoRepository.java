@@ -10,5 +10,5 @@ import java.util.List;
 public interface IpoRepository extends JpaRepository<Ipo, Integer> {
     Ipo findByCompanyId(int companyId);
 
-    List<Ipo> findAllByOrderByOpenDateTimeAsc();
+    List<Ipo> findAllByOrderByDateTimeAsc();
 }

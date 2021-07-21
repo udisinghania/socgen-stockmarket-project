@@ -20,7 +20,6 @@ public class Ipo {
     @Column(name="total_shares")
     private int shares;
 
-    @Column(name="open_datetime")
     private Timestamp dateTime;
 
     private String remarks;

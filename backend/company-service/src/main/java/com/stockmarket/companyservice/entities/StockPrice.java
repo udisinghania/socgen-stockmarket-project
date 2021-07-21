@@ -15,7 +15,6 @@ public class StockPrice {
 
     private Timestamp timestamp;
 
-    @NotNull
     @ManyToOne
     private Stock stock;
 
