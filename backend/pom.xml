@@ -68,6 +68,7 @@
 		<module>eureka-service</module>
 		<module>api-gateway-service</module>
 		<module>config-service</module>
+		<module>user-service</module>
 	</modules>
 	<build>
 		<plugins>

@@ -14,9 +14,9 @@ import java.util.List;
 public class ExcelController {
 
 
-    @PostMapping("/addStockPrice")
+    @PostMapping("/stock")
     public ResponseEntity addStockPrice(@RequestBody List<ExcelDataDto> excelDataDtos){
-        String url = "http://COMPANY-SERVICE/company/addStockPrice";
+        String url = "http://localhost:9191/company/company/StockPrice";
         RestTemplate restTemplate = new RestTemplate();
         ArrayList failedRequests = restTemplate.postForEntity(url, excelDataDtos, ArrayList.class).getBody();
         assert failedRequests != null;
