@@ -15,9 +15,8 @@ import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
 
 import java.util.Collections;
 
-
-@EnableSwagger2
 @EnableWebMvc
+@EnableSwagger2
 @SpringBootApplication
 @EnableDiscoveryClient
 public class SectorServiceApplication {

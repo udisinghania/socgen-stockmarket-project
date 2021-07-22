@@ -1,10 +1,7 @@
 package com.stockmarket.companyservice.entities;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.ManyToOne;
+import javax.persistence.*;
+import java.util.Set;
 
 @Entity
 public class Company {
@@ -14,6 +11,8 @@ public class Company {
     private int id;
 
     private String name;
+
+    private String companyCode;
 
     private long turnover;
 
@@ -25,6 +24,12 @@ public class Company {
 
     @ManyToOne
     private Sector sector;
+
+    @ManyToMany(mappedBy = "companies_exchanges")
+    private Set<StockExchange> stockExchanges;
+
+    @ManyToMany(mappedBy = "bod_companies")
+    private Set<BoardOfDirectors> bod;
 
     public Company() {
         super();

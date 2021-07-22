@@ -1,12 +1,7 @@
 package com.stockmarket.companyservice.entities;
 
-import javax.persistence.CascadeType;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.OneToOne;
-import javax.persistence.Table;
+import javax.persistence.*;
+import java.util.Set;
 
 @Entity
 @Table(name="STOCK_EXCHANGE")
@@ -22,6 +17,12 @@ public class StockExchange {
 
     @OneToOne(cascade = {CascadeType.ALL})
     private Address address;
+
+    @ManyToMany
+    @JoinTable(name="company_exchanges",
+            joinColumns = @JoinColumn(name = "stock_exchange_id"),
+            inverseJoinColumns = @JoinColumn(name = "company_id"))
+    private Set<Company> companies_exchanges;
 
     public StockExchange() {
         super();
