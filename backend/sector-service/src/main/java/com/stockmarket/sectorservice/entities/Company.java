@@ -1,15 +1,12 @@
 package com.stockmarket.sectorservice.entities;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.ManyToOne;
+import javax.persistence.*;
 
 @Entity
 public class Company {
 
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
     private String name;
@@ -18,7 +15,6 @@ public class Company {
     private String description;
     private String companyCode;
     private String boardOfDirectors;
-    private int stockExchangeId;
 
     @ManyToOne
     private Sector sector;
@@ -27,8 +23,7 @@ public class Company {
         super();
     }
 
-    public Company(int id, String name, long turnover, String ceo, String description, String companyCode, String boardOfDirectors, int stockExchangeId, Sector sector) {
-        super();
+    public Company(int id, String name, long turnover, String ceo, String description, String companyCode, String boardOfDirectors, Sector sector) {
         this.id = id;
         this.name = name;
         this.turnover = turnover;
@@ -36,7 +31,6 @@ public class Company {
         this.description = description;
         this.companyCode = companyCode;
         this.boardOfDirectors = boardOfDirectors;
-        this.stockExchangeId = stockExchangeId;
         this.sector = sector;
     }
 
@@ -94,14 +88,6 @@ public class Company {
 
     public void setBoardOfDirectors(String boardOfDirectors) {
         this.boardOfDirectors = boardOfDirectors;
-    }
-
-    public int getStockExchangeId() {
-        return stockExchangeId;
-    }
-
-    public void setStockExchangeId(int stockExchangeId) {
-        this.stockExchangeId = stockExchangeId;
     }
 
     public Sector getSector() {

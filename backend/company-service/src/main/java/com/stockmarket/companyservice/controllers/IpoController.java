@@ -12,18 +12,18 @@ import java.util.List;
 import java.util.Optional;
 
 @RestController
-@RequestMapping("/ipo")
+@RequestMapping("/company")
 public class IpoController {
 
     @Autowired
     IpoService ipoService;
 
-    @GetMapping("/Ipo")
+    @GetMapping("/ipo")
     public ResponseEntity<List<Ipo>> getAllIpos(){
         return ResponseEntity.ok(ipoService.getAllIpos());
     }
 
-    @PostMapping("/Ipo")
+    @PostMapping("/ipo")
     public ResponseEntity<Ipo> addIpo(@RequestBody Ipo ipo){
         return ResponseEntity.ok(ipoService.addIpo(ipo));
     }
@@ -43,10 +43,16 @@ public class IpoController {
         return new ResponseEntity<>(id, HttpStatus.OK);
     }
 
-    @GetMapping("/getIpoByCompany/{companyId}")
+    @GetMapping("/ipo/company/{companyId}")
     public ResponseEntity getIpoByCompanyId(@PathVariable("companyId") int companyId) {
         Ipo ipo =  ipoService.getIpoByCompanyId(companyId);
         return ipo!=null? ResponseEntity.ok(ipo): ResponseEntity.status(HttpStatus.NOT_FOUND).body("No IPO found with company id "+companyId);
+    }
+
+    @PutMapping("/ipo/{id}")
+    public ResponseEntity<?> updateIpoData(@PathVariable int id,@RequestBody Ipo ipo){
+        Ipo updatedIpo = ipoService.updateIpo(id, ipo);
+        return updatedIpo==null?ResponseEntity.ok("IPO with id "+id+" not found."):ResponseEntity.ok(updatedIpo);
     }
 
 }

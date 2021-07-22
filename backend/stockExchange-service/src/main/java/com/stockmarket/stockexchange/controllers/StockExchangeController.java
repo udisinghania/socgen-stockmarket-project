@@ -1,21 +1,22 @@
 package com.stockmarket.stockexchange.controllers;
 
-import com.stockmarket.stockexchange.entities.Company;
 import com.stockmarket.stockexchange.entities.StockExchange;
 import com.stockmarket.stockexchange.services.StockExchangeService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.client.RestTemplate;
 
 import java.util.List;
 
 @RestController
-@RequestMapping("/stockExchange")
+@RequestMapping("/stockexchange")
 public class StockExchangeController {
 
     @Autowired
     private StockExchangeService stockExchangeService;
+
 
     @GetMapping("/stockexchanges")
     private ResponseEntity<List<StockExchange>> getAllStockExchanges()
@@ -71,8 +72,10 @@ public class StockExchangeController {
     }
 
     @GetMapping("/companies/{id}")
-    private ResponseEntity<List<Company>> getCompanies(@PathVariable("id") int id){
-        return ResponseEntity.ok(stockExchangeService.getCompanies(id));
+    private ResponseEntity getCompanies(@PathVariable("id") int id){
+        RestTemplate restTemplate = new RestTemplate();
+        String url = "http://COMPANY-SERVICE/company/getCompanyByExchange/"+id;
+		return restTemplate.getForEntity(url, String.class);
     }
 
 

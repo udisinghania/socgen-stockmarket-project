@@ -18,9 +18,7 @@ public class IpoService {
 
     public List<Ipo> getAllIpos()
     {
-        List<Ipo> ipos = new ArrayList<>();
-        ipoRepository.findAll().forEach(ipos::add);
-        return ipos;
+        return ipoRepository.findAllByOrderByDateTimeAsc();
     }
 
     public Ipo getIpoById(int id)
@@ -45,6 +43,15 @@ public class IpoService {
         return false;
     }
 
+    public Ipo updateIpo(int id, Ipo ipo) {
+        Optional<Ipo> ipoOptional = ipoRepository.findById(id);
+        if(ipoOptional.isEmpty()) {
+            return null;
+        }
+        ipo.setId(id);
+        ipoRepository.save(ipo);
+        return ipo;
+    }
 
     public Ipo getIpoByCompanyId(int companyId) {
         return ipoRepository.findByCompanyId(companyId);

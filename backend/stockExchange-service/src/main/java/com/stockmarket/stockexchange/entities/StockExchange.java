@@ -12,7 +12,7 @@ import java.util.List;
 public class StockExchange {
 
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
     private int id;
 
@@ -21,40 +21,15 @@ public class StockExchange {
     private String brief;
     private String remarks;
 
-    @OneToOne(cascade = CascadeType.ALL)
+    @OneToOne(cascade = {CascadeType.ALL})
     @JoinColumn(name = "address_id", referencedColumnName = "id")
-    @JsonManagedReference
     private Address address;
 
-    @OneToMany(mappedBy="stockExchange")
-    @JsonProperty(access= JsonProperty.Access.WRITE_ONLY)
-    private List<Company> companies;
-
-    public List<Company> getCompanies(){
-        return companies;
-    }
-
-    @OneToMany
-    @JsonProperty(access= JsonProperty.Access.WRITE_ONLY)
-    private List<Stock> stocks;
-
-    public List<Stock> getStocks(){
-        return stocks;
-    }
 
     public StockExchange() {
         super();
     }
 
-    public StockExchange(int id, String name, String brief, String remarks, Address address, List<Company> companies, List<Stock> stocks) {
-        this.id = id;
-        this.name = name;
-        this.brief = brief;
-        this.remarks = remarks;
-        this.address = address;
-        this.companies = companies;
-        this.stocks = stocks;
-    }
 
     public int getId() {
         return id;

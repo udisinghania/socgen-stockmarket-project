@@ -1,0 +1,30 @@
+server:
+  port: 9191
+
+spring:
+  main:
+    web-application-type: reactive
+  application:
+    name: API-GATEWAY-SERVICE
+  cloud:
+    gateway:
+      routes:
+        - id: STOCK-EXCHANGE-SERVICE
+          uri: lb://STOCK-EXCHANGE-SERVICE
+          predicates:
+            - Path=/stockexchange/**
+        - id: COMPANY-SERVICE
+          uri: lb://COMPANY-SERVICE
+          predicates:
+            - Path=/company/**
+        - id: EXCEL-SERVICE
+          uri: lb://EXCEL-SERVICE
+          predicates:
+            - Path=/excel/**
+        - id: SECTOR-SERVICE
+          uri: lb://SECTOR-SERVICE
+          predicates:
+            - Path=/sector/**
+      discovery:
+        locator:
+          enabled: true
