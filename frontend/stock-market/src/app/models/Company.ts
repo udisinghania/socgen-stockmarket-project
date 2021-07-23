@@ -1,5 +1,6 @@
 export interface Company{
-    id : number | undefined;
+    id : string | undefined;
+    code: string | undefined;
     name : string | undefined;
     turnover : number | undefined;
     ceo : string | undefined;

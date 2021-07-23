@@ -12,7 +12,8 @@ import { SectorService } from 'src/app/services/sector.service';
 export class CreateCompanyComponent implements OnInit {
 
   company: Company = 
- { id : 0 ,
+ { id : '' ,
+   code : '',
   name : '',
   turnover : 0,
   ceo : '',

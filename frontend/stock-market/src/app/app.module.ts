@@ -21,6 +21,8 @@ import { CreateSectorComponent } from './components/sectors/create-sector/create
 import { AgGridModule } from 'ag-grid-angular';
 import { EditSectorComponent } from './components/sectors/edit-sector/edit-sector.component';
 import { EditStockExchangeComponent } from './components/stock-exchanges/edit-stock-exchange/edit-stock-exchange.component';
+import { EditCompanyComponent } from './components/companies/edit-company/edit-company.component';
+import { EditIpoComponent } from './components/ipos/edit-ipo/edit-ipo.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -38,7 +40,9 @@ import { EditStockExchangeComponent } from './components/stock-exchanges/edit-st
     CreateStockExchangeComponent,
     CreateSectorComponent,
     EditSectorComponent,
-    EditStockExchangeComponent
+    EditStockExchangeComponent,
+    EditCompanyComponent,
+    EditIpoComponent
   ],
   imports: [
     BrowserModule,

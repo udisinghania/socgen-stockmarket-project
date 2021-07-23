@@ -67,7 +67,7 @@
 
       <div class="form-group">
           <label for="sectorId">Sector Name</label>
-          <select  id="sector">
+          <select  id="sector" name="sectorId" #sectorId ="ngModel" [(ngModel)]="company.sector_id">
             <option *ngFor="let sector of sectors" [value]="sector.id">
               {{sector.name}}
             </option>
