@@ -28,8 +28,10 @@
             ],
             "styles": [
               "src/styles.css",
-              "C:/Users/User/Desktop/workspace/stock-application/socgen-stockmarket-project/frontend/stock-market/node_modules/bootstrap/dist/css/bootstrap.min.css"
-            ],
+              "C:/Users/User/Desktop/workspace/stock-application/socgen-stockmarket-project/frontend/stock-market/node_modules/bootstrap/dist/css/bootstrap.min.css",
+            "C:/Users/User/Desktop/workspace/stock-application/socgen-stockmarket-project/frontend/stock-market/node_modules/ag-grid/dist/styles/ag-grid.css",
+            "C:/Users/User/Desktop/workspace/stock-application/socgen-stockmarket-project/frontend/stock-market/node_modules/ag-grid/dist/styles/ag-theme-balham.css"  
+          ],
             "scripts": [
               "C:/Users/User/Desktop/workspace/stock-application/socgen-stockmarket-project/frontend/stock-market/node_modules/bootstrap/dist/js/bootstrap.js"
             ]

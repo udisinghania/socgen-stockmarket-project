@@ -17,5 +17,36 @@ public class BoardOfDirectors {
     inverseJoinColumns = @JoinColumn(name = "company_id"))
     private Set<Company> bod_companies;
 
+    public BoardOfDirectors(){
 
+    }
+
+    public BoardOfDirectors(int id, String name) {
+        this.id = id;
+        this.name = name;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public Set<Company> getBod_companies() {
+        return bod_companies;
+    }
+
+    public void setBod_companies(Set<Company> bod_companies) {
+        this.bod_companies = bod_companies;
+    }
 }

@@ -1,15 +1,7 @@
-package com.stockmarket.companyservice.entities;
+package com.stockmarket.companyservice.dtos;
 
-import javax.persistence.*;
-import java.util.Set;
-
-@Entity
-public class Company {
-
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+public class CompanyDto {
     private int id;
-
     private String name;
 
     private String companyCode;
@@ -20,26 +12,26 @@ public class Company {
 
     private String description;
 
+    private String boardOfDirectors;
+
     private int sectorId;
 
-    @ManyToMany(mappedBy = "companies_exchanges")
-    private Set<StockExchange> stockExchanges;
+    private String stockExchangeNames;
 
-    @ManyToMany(mappedBy = "bod_companies")
-    private Set<BoardOfDirectors> bod;
-
-    public Company() {
+    public CompanyDto(){
         super();
     }
 
-    public Company(int id, String name, String companyCode, long turnover, String ceo, String description, int sectorId) {
+    public CompanyDto(int id, String name, String companyCode, long turnover, String ceo, String description, String boardOfDirectors, int sectorId, String stockExchangeNames) {
         this.id = id;
         this.name = name;
         this.companyCode = companyCode;
         this.turnover = turnover;
         this.ceo = ceo;
         this.description = description;
+        this.boardOfDirectors = boardOfDirectors;
         this.sectorId = sectorId;
+        this.stockExchangeNames = stockExchangeNames;
     }
 
     public int getId() {
@@ -56,6 +48,14 @@ public class Company {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public String getCompanyCode() {
+        return companyCode;
+    }
+
+    public void setCompanyCode(String companyCode) {
+        this.companyCode = companyCode;
     }
 
     public long getTurnover() {
@@ -82,12 +82,12 @@ public class Company {
         this.description = description;
     }
 
-    public String getCompanyCode() {
-        return companyCode;
+    public String getBoardOfDirectors() {
+        return boardOfDirectors;
     }
 
-    public void setCompanyCode(String companyCode) {
-        this.companyCode = companyCode;
+    public void setBoardOfDirectors(String boardOfDirectors) {
+        this.boardOfDirectors = boardOfDirectors;
     }
 
     public int getSectorId() {
@@ -98,19 +98,11 @@ public class Company {
         this.sectorId = sectorId;
     }
 
-    public Set<StockExchange> getStockExchanges() {
-        return stockExchanges;
+    public String getStockExchangeNames() {
+        return stockExchangeNames;
     }
 
-    public void setStockExchanges(Set<StockExchange> stockExchanges) {
-        this.stockExchanges = stockExchanges;
-    }
-
-    public Set<BoardOfDirectors> getBod() {
-        return bod;
-    }
-
-    public void setBod(Set<BoardOfDirectors> bod) {
-        this.bod = bod;
+    public void setStockExchangeNames(String stockExchangeNames) {
+        this.stockExchangeNames = stockExchangeNames;
     }
 }

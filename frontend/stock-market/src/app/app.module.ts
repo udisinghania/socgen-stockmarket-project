@@ -18,7 +18,7 @@ import { CreateCompanyComponent } from './components/companies/create-company/cr
 import { CreateIpoComponent } from './components/ipos/create-ipo/create-ipo.component';
 import { CreateStockExchangeComponent } from './components/stock-exchanges/create-stock-exchange/create-stock-exchange.component';
 import { CreateSectorComponent } from './components/sectors/create-sector/create-sector.component';
-
+import { AgGridModule } from 'ag-grid-angular';
 @NgModule({
   declarations: [
     AppComponent,
@@ -41,7 +41,11 @@ import { CreateSectorComponent } from './components/sectors/create-sector/create
     AppRoutingModule,
     FormsModule,
     ReactiveFormsModule,
-    HttpClientModule
+    HttpClientModule,
+    AgGridModule.withComponents([CompaniesComponent,
+      SectorsComponent,
+      IposComponent,
+      StockExchangesComponent])
   ],
   providers: [],
   bootstrap: [AppComponent]

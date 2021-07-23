@@ -7,12 +7,26 @@
   <thead class="thead-inverse thead-dark">
     <tr>
       <th>Name</th>
-      <th>Description</th>
+      <th>Brief</th>
       <th>Contact Address</th>
       <th>Remarks</th>
       <th></th>
       <th></th>
     </tr>
   </thead>
+  <tbody>
+    <tr *ngFor="let stockExchange of stockExchanges">
+      <td>{{ stockExchange.name }}</td>
+      <td>{{ stockExchange.brief }}</td>
+      <td>{{ stockExchange.address.houseNo }}, {{ stockExchange.address.city }},<br> {{ stockExchange.address.state }}, {{ stockExchange.address.country }},<br> {{ stockExchange.address.pin }}</td>
+      <td>{{ stockExchange.remarks }}</td>
+      
+      <td>
+        <button (click)="onDeleteClick(stockExchange.id)" class="btn btn-secondary btn-sm" *ngIf=isAdmin>
+          <i class="fa fa-trash"></i> Delete
+        </button>
+      </td>
+    </tr>
+  </tbody>
  
 </table>

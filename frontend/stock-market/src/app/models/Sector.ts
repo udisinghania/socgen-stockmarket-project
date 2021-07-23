@@ -1,5 +1,5 @@
 export interface Sector{
-    id : string ;
+    id :string ;
     name : string ;
     brief : string ;
 }

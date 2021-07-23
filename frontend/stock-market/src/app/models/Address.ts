@@ -1,8 +1,8 @@
 export interface Address{
-    id : number | undefined;
-    houseNo : string | undefined;
-    city : string | undefined;
-    pin : string | undefined;
-    state : string | undefined;
-    country : string| undefined;
+    id : string ;
+    houseNo : string ;
+    city : string ;
+    pin : string ;
+    state : string ;
+    country : string;
 }

@@ -1,7 +1,9 @@
+import { Address } from "./Address";
+
 export interface Stock_exchange{
-    id : number | undefined;
-    name : string | undefined;
-    brief : string | undefined;
-    remarks : string | undefined;
-    address_id : number | undefined; 
+    id : string;
+    name : string ;
+    brief : string ;
+    remarks : string ;
+    address : Address; 
 }

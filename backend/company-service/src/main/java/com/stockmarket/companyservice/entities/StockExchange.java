@@ -28,13 +28,13 @@ public class StockExchange {
         super();
     }
 
-    public StockExchange(int id, String name, String brief, String remarks, Address addressId) {
-        super();
+    public StockExchange(int id, String name, String brief, String remarks, Address address, Set<Company> companies_exchanges) {
         this.id = id;
         this.name = name;
         this.brief = brief;
         this.remarks = remarks;
-        this.address = addressId;
+        this.address = address;
+        this.companies_exchanges = companies_exchanges;
     }
 
     public int getId() {

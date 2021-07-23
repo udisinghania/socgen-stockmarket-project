@@ -1,5 +1,6 @@
 package com.stockmarket.companyservice.controllers;
 
+import com.stockmarket.companyservice.dtos.CompanyDto;
 import com.stockmarket.companyservice.entities.Company;
 import com.stockmarket.companyservice.services.CompanyService;
 import org.springframework.beans.factory.annotation.Autowired;
