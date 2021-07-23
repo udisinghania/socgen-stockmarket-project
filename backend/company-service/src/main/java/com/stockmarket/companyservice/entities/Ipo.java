@@ -1,12 +1,7 @@
 package com.stockmarket.companyservice.entities;
 import java.sql.Timestamp;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.OneToOne;
+import javax.persistence.*;
 
 @Entity
 public class Ipo {
@@ -24,24 +19,39 @@ public class Ipo {
 
     private String remarks;
 
-    @OneToOne
-    private Company company;
+    private int companyId;
 
-    @OneToOne
-    private StockExchange stockExchange;
+    private int stockExchangeId;
+
 
     public Ipo(){
         super();
     }
 
-    public Ipo(int id, double price, int shares, Timestamp dateTime, String remarks, Company company, StockExchange stockExchange) {
+    public Ipo(int id, double price, int shares, Timestamp dateTime, String remarks, int companyId, int stockExchangeId) {
         this.id = id;
         this.price = price;
         this.shares = shares;
         this.dateTime = dateTime;
         this.remarks = remarks;
-        this.company = company;
-        this.stockExchange = stockExchange;
+        this.companyId = companyId;
+        this.stockExchangeId = stockExchangeId;
+    }
+
+    public int getCompanyId() {
+        return companyId;
+    }
+
+    public void setCompanyId(int companyId) {
+        this.companyId = companyId;
+    }
+
+    public int getStockExchangeId() {
+        return stockExchangeId;
+    }
+
+    public void setStockExchangeId(int stockExchangeId) {
+        this.stockExchangeId = stockExchangeId;
     }
 
     public int getId() {
@@ -52,13 +62,6 @@ public class Ipo {
         this.id = id;
     }
 
-    public StockExchange getStockExchange() {
-        return stockExchange;
-    }
-
-    public void setStockExchange(StockExchange stockExchange) {
-        this.stockExchange = stockExchange;
-    }
 
     public double getPrice() {
         return price;
@@ -92,11 +95,5 @@ public class Ipo {
         this.remarks = remarks;
     }
 
-    public Company getCompany() {
-        return company;
-    }
 
-    public void setCompany(Company company) {
-        this.company = company;
-    }
 }

@@ -5,5 +5,5 @@ export interface Company{
     ceo : string | undefined;
     description : string | undefined;
     boardOfDirectors : string| undefined;
-    sector_id : number | undefined;
+    sector_id : string | undefined;
 }

@@ -20,7 +20,11 @@
       <td>{{ stockExchange.brief }}</td>
       <td>{{ stockExchange.address.houseNo }}, {{ stockExchange.address.city }},<br> {{ stockExchange.address.state }}, {{ stockExchange.address.country }},<br> {{ stockExchange.address.pin }}</td>
       <td>{{ stockExchange.remarks }}</td>
-      
+      <td *ngIf=isAdmin>
+        <a routerLink="/edit-stock-exchange" class="btn btn-secondary btn-sm" *ngIf=isAdmin [state]="stockExchange">
+          <i class="fa fa-pencil"></i> Edit
+        </a>
+      </td>
       <td>
         <button (click)="onDeleteClick(stockExchange.id)" class="btn btn-secondary btn-sm" *ngIf=isAdmin>
           <i class="fa fa-trash"></i> Delete

@@ -19,6 +19,8 @@ import { CreateIpoComponent } from './components/ipos/create-ipo/create-ipo.comp
 import { CreateStockExchangeComponent } from './components/stock-exchanges/create-stock-exchange/create-stock-exchange.component';
 import { CreateSectorComponent } from './components/sectors/create-sector/create-sector.component';
 import { AgGridModule } from 'ag-grid-angular';
+import { EditSectorComponent } from './components/sectors/edit-sector/edit-sector.component';
+import { EditStockExchangeComponent } from './components/stock-exchanges/edit-stock-exchange/edit-stock-exchange.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -34,7 +36,9 @@ import { AgGridModule } from 'ag-grid-angular';
     CreateCompanyComponent,
     CreateIpoComponent,
     CreateStockExchangeComponent,
-    CreateSectorComponent
+    CreateSectorComponent,
+    EditSectorComponent,
+    EditStockExchangeComponent
   ],
   imports: [
     BrowserModule,

@@ -4,11 +4,11 @@ import { Stock_exchange } from 'src/app/models/Stock_exchange';
 import { StockExchangeService } from 'src/app/services/stock-exchange.service';
 
 @Component({
-  selector: 'app-create-stock-exchange',
-  templateUrl: './create-stock-exchange.component.html',
-  styleUrls: ['./create-stock-exchange.component.css']
+  selector: 'app-edit-stock-exchange',
+  templateUrl: './edit-stock-exchange.component.html',
+  styleUrls: ['./edit-stock-exchange.component.css']
 })
-export class CreateStockExchangeComponent implements OnInit {
+export class EditStockExchangeComponent implements OnInit {
 
   address : Address = {
     id:'',
@@ -26,15 +26,20 @@ export class CreateStockExchangeComponent implements OnInit {
     address: this.address
   }
 
+
   constructor(private stockExchangeService: StockExchangeService) { }
 
   ngOnInit(): void {
+    console.log(history.state);
+    this.stockExchange.id = history.state.id;
+    this.stockExchange.name = history.state.name;
   }
+
   onSubmit({value}: {value: Stock_exchange}) {
     console.log(value);
     this.stockExchange = value;
     console.log(this.stockExchange);
-    this.stockExchangeService.addStockExchange(value);
+    this.stockExchangeService.updateStockExchange(value);
   }
 
 }
