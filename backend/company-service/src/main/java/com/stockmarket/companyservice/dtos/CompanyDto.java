@@ -1,5 +1,7 @@
 package com.stockmarket.companyservice.dtos;
 
+import java.util.Set;
+
 public class CompanyDto {
     private int id;
     private String name;
@@ -18,23 +20,7 @@ public class CompanyDto {
 
     private String stockExchangeNames;
 
-    public CompanyDto(){
-        super();
-    }
-
-    public CompanyDto(int id, String name, String companyCode, long turnover, String ceo, String description, String boardOfDirectors, int sectorId, String stockExchangeNames) {
-        this.id = id;
-        this.name = name;
-        this.companyCode = companyCode;
-        this.turnover = turnover;
-        this.ceo = ceo;
-        this.description = description;
-        this.boardOfDirectors = boardOfDirectors;
-        this.sectorId = sectorId;
-        this.stockExchangeNames = stockExchangeNames;
-    }
-
-    public int getId() {
+   public int getId() {
         return id;
     }
 

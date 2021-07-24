@@ -11,18 +11,11 @@ public class BoardOfDirectors {
     private int id;
     private String name;
 
-    @ManyToMany
-    @JoinTable(name="bod_company",
-    joinColumns = @JoinColumn(name = "board_of_director_id"),
-    inverseJoinColumns = @JoinColumn(name = "company_id"))
-    private Set<Company> bod_companies;
-
     public BoardOfDirectors(){
 
     }
 
-    public BoardOfDirectors(int id, String name) {
-        this.id = id;
+    public BoardOfDirectors(String name) {
         this.name = name;
     }
 
@@ -42,11 +35,4 @@ public class BoardOfDirectors {
         this.name = name;
     }
 
-    public Set<Company> getBod_companies() {
-        return bod_companies;
-    }
-
-    public void setBod_companies(Set<Company> bod_companies) {
-        this.bod_companies = bod_companies;
-    }
 }

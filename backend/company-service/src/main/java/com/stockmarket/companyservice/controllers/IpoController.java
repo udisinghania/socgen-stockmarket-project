@@ -1,6 +1,5 @@
 package com.stockmarket.companyservice.controllers;
 
-import com.stockmarket.companyservice.entities.Company;
 import com.stockmarket.companyservice.entities.Ipo;
 import com.stockmarket.companyservice.services.IpoService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -32,7 +31,8 @@ public class IpoController {
     @GetMapping("/ipo/{id}")
     public ResponseEntity getIpoById(@PathVariable("id") int id){
         Optional<Ipo> ipoOptional = Optional.ofNullable(ipoService.getIpoById(id));
-        return ipoOptional.isPresent()?ResponseEntity.ok(ipoOptional.get()): ResponseEntity.status(HttpStatus.NOT_FOUND).body("Company with id "+id+" not found.");
+        return ipoOptional.isPresent()?ResponseEntity.ok(ipoOptional.get()): ResponseEntity.status(HttpStatus.NOT_FOUND).body("Ipo with id "+id+" not found.");
+
     }
 
     @DeleteMapping("/ipo/{id}")
@@ -54,6 +54,12 @@ public class IpoController {
     public ResponseEntity<?> updateIpoData(@PathVariable int id,@RequestBody Ipo ipo){
         Ipo updatedIpo = ipoService.updateIpo(id, ipo);
         return updatedIpo==null?ResponseEntity.ok("IPO with id "+id+" not found."):ResponseEntity.ok(updatedIpo);
+    }
+
+    @GetMapping("/ipo/stockexchange/{stockExchangeId}")
+    public ResponseEntity<?>  getIpoByStockexchangeId(@PathVariable("stockExchangeId") int stockExchangeId) {
+        List<Ipo> ipos =  ipoService.getIposByStockExchangeId(stockExchangeId);
+        return ipos!=null? ResponseEntity.ok(ipos): ResponseEntity.status(HttpStatus.NOT_FOUND).body("No IPO found with stock exchange id "+stockExchangeId);
     }
 
 }

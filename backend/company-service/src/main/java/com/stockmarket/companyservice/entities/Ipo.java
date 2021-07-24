@@ -15,6 +15,7 @@ public class Ipo {
     @Column(name="total_shares")
     private int shares;
 
+
     private Timestamp dateTime;
 
     private String remarks;
@@ -22,7 +23,6 @@ public class Ipo {
     private int companyId;
 
     private int stockExchangeId;
-
 
     public Ipo(){
         super();

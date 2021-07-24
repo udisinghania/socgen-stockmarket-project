@@ -5,7 +5,6 @@ import com.stockmarket.companyservice.repositories.IpoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -44,16 +43,20 @@ public class IpoService {
     }
 
     public Ipo updateIpo(int id, Ipo ipo) {
-        Optional<Ipo> ipoOptional = ipoRepository.findById(id);
+        ipo.setId(id);
+        Optional<Ipo> ipoOptional = Optional.ofNullable(getIpoById(id));
         if(ipoOptional.isEmpty()) {
             return null;
         }
-        ipo.setId(id);
-        ipoRepository.save(ipo);
-        return ipo;
+        return ipoRepository.save(ipo);
     }
 
     public Ipo getIpoByCompanyId(int companyId) {
         return ipoRepository.findByCompanyId(companyId);
     }
+
+    public List<Ipo> getIposByStockExchangeId(int stockExchangeId) {
+        return ipoRepository.findByStockExchangeId(stockExchangeId);
+    }
+
 }

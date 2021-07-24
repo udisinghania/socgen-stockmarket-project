@@ -1,33 +1,43 @@
 package com.stockmarket.companyservice.entities;
 
 import javax.persistence.*;
-import javax.validation.constraints.NotNull;
-import java.sql.Timestamp;
+import java.util.Date;
 
 @Entity
 public class StockPrice {
-
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
-    private double price;
-
-    private Timestamp timestamp;
+    @ManyToOne
+    private Company company;
 
     @ManyToOne
-    private Stock stock;
+    private StockExchange stockExchange;
+
+    private double price;
+
+    private String date;
+
 
     public StockPrice() {
         super();
     }
 
-    public StockPrice(int id, double price, Timestamp timestamp, Stock stock) {
-        super();
+    public StockPrice(int id, Company company, StockExchange stockExchange, double price, String date) {
         this.id = id;
+        this.company = company;
+        this.stockExchange = stockExchange;
         this.price = price;
-        this.timestamp = timestamp;
-        this.stock = stock;
+        this.date = date;
+    }
+
+    public String getDate() {
+        return date;
+    }
+
+    public void setDate(String date) {
+        this.date = date;
     }
 
     public int getId() {
@@ -46,20 +56,19 @@ public class StockPrice {
         this.price = price;
     }
 
-    public Timestamp getTimestamp() {
-        return timestamp;
+    public Company getCompany() {
+        return company;
     }
 
-    public void setTimestamp(Timestamp timestamp) {
-        this.timestamp = timestamp;
+    public void setCompany(Company company) {
+        this.company = company;
     }
 
-    public Stock getStock() {
-        return stock;
+    public StockExchange getStockExchange() {
+        return stockExchange;
     }
 
-    public void setStock(Stock stock) {
-        this.stock = stock;
+    public void setStockExchange(StockExchange stockExchange) {
+        this.stockExchange = stockExchange;
     }
-
 }

@@ -1,5 +1,5 @@
 package com.stockmarket.companyservice.dtos;
-import java.sql.Timestamp;
+
 
 public class ExcelDataDto {
 
@@ -9,18 +9,18 @@ public class ExcelDataDto {
 
     private double price;
 
-    private Timestamp timestamp;
+    private String date;
 
     public ExcelDataDto() {
         super();
     }
 
-    public ExcelDataDto(int companyId, int exchangeId, double price, Timestamp timestamp) {
+    public ExcelDataDto(int companyId, int exchangeId, double price, String date) {
         super();
         this.companyId = companyId;
         this.exchangeId = exchangeId;
         this.price = price;
-        this.timestamp = timestamp;
+        this.date = date;
     }
 
     public int getCompanyId() {
@@ -47,12 +47,11 @@ public class ExcelDataDto {
         this.price = price;
     }
 
-    public Timestamp getTimestamp() {
-        return timestamp;
+    public String getDate() {
+        return date;
     }
 
-    public void setTimestamp(Timestamp timestamp) {
-        this.timestamp = timestamp;
+    public void setDate(String date) {
+        this.date = date;
     }
-
 }

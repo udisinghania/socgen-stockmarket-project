@@ -1,21 +1,29 @@
 package com.stockmarket.companyservice.services;
-
-import com.stockmarket.companyservice.dtos.CompanyDto;
-import com.stockmarket.companyservice.entities.BoardOfDirectors;
-import com.stockmarket.companyservice.entities.Company;
+import com.stockmarket.companyservice.entities.*;
+import com.stockmarket.companyservice.repositories.BodRepository;
 import com.stockmarket.companyservice.repositories.CompanyRepository;
+import com.stockmarket.companyservice.repositories.IpoRepository;
+import com.stockmarket.companyservice.repositories.StockExchangeRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Optional;
-import java.util.Set;
 
 @Service
 public class CompanyService {
 
     @Autowired
     CompanyRepository companyRepository;
+
+    @Autowired
+    BodRepository bodRepository;
+
+    @Autowired
+    IpoRepository ipoRepository;
+
+    @Autowired
+    StockExchangeRepository stockExchangeRepository;
 
 
     public List<Company> getAllCompanies()
@@ -33,6 +41,7 @@ public class CompanyService {
 
     public Company addCompany(Company company)
     {
+
         return companyRepository.save(company);
     }
 
@@ -40,7 +49,9 @@ public class CompanyService {
     {
         if(companyRepository.findById(id).isPresent())
         {
+            Ipo ipo = ipoRepository.findByCompanyId(id);
             companyRepository.deleteById(id);
+            ipoRepository.deleteById(ipo.getId());
             return true;
         }
         return false;
@@ -53,6 +64,7 @@ public class CompanyService {
         if(companyOptional.isEmpty()) {
             return null;
         }
+        company.setId(id);
         return companyRepository.save(company);
     }
 
@@ -61,20 +73,7 @@ public class CompanyService {
         return companyRepository.findByNameContainingIgnoreCase(pattern);
     }
 
-    public List<Company> getCompanyByExchange(int id)
-    {
-        return companyRepository.findCompanyByExchange(id);
-    }
-
-    public Company deactivateCompany(int id)
-    {
-        Optional<Company> companyOptional = Optional.ofNullable(getCompanyById(id));
-        if(companyOptional.isEmpty()) {
-            return null;
-        }
-        companyRepository.deleteById(id);
-        return companyOptional.get();
-    }
+    
 
 
 }

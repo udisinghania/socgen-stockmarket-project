@@ -7,6 +7,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.sql.Date;
+import java.text.ParseException;
 import java.util.List;
 
 @RestController
@@ -28,7 +30,7 @@ public class StockPriceController {
     }
 
     @GetMapping("/StockPrice/companyId/{companyId}/exchangeId/{exchangeId}/fromTime/{fromTime}/toTime/{toTime}")
-    public ResponseEntity<List<StockPrice>> getStockPrice(@PathVariable int companyId, @PathVariable int exchangeId, @PathVariable String fromTime, @PathVariable String toTime){
-        return ResponseEntity.ok(stockPriceService.getStockPrice(companyId, exchangeId, fromTime, toTime));
+    public ResponseEntity<List<StockPrice>> getStockPrice(@PathVariable int companyId, @PathVariable int exchangeId, @PathVariable String fromTime, @PathVariable String toTime) throws ParseException {
+        return ResponseEntity.ok(stockPriceService.getStockPricesForCompanyComparison(companyId, exchangeId, fromTime, toTime));
     }
 }

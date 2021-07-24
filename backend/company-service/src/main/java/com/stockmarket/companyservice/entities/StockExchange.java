@@ -1,6 +1,9 @@
 package com.stockmarket.companyservice.entities;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 import javax.persistence.*;
+import java.util.List;
 import java.util.Set;
 
 @Entity
@@ -18,23 +21,17 @@ public class StockExchange {
     @OneToOne(cascade = {CascadeType.ALL})
     private Address address;
 
-    @ManyToMany
-    @JoinTable(name="company_exchanges",
-            joinColumns = @JoinColumn(name = "stock_exchange_id"),
-            inverseJoinColumns = @JoinColumn(name = "company_id"))
-    private Set<Company> companies_exchanges;
 
     public StockExchange() {
         super();
     }
 
-    public StockExchange(int id, String name, String brief, String remarks, Address address, Set<Company> companies_exchanges) {
+    public StockExchange(int id, String name, String brief, String remarks, Address address) {
         this.id = id;
         this.name = name;
         this.brief = brief;
         this.remarks = remarks;
         this.address = address;
-        this.companies_exchanges = companies_exchanges;
     }
 
     public int getId() {

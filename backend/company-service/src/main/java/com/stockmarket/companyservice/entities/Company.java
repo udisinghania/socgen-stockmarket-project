@@ -22,17 +22,14 @@ public class Company {
 
     private int sectorId;
 
-    @ManyToMany(mappedBy = "companies_exchanges")
-    private Set<StockExchange> stockExchanges;
+    private String boardOfDirectors;
 
-    @ManyToMany(mappedBy = "bod_companies")
-    private Set<BoardOfDirectors> bod;
 
     public Company() {
         super();
     }
 
-    public Company(int id, String name, String companyCode, long turnover, String ceo, String description, int sectorId) {
+    public Company(int id, String name, String companyCode, long turnover, String ceo, String description, int sectorId, String boardOfDirectors) {
         this.id = id;
         this.name = name;
         this.companyCode = companyCode;
@@ -40,6 +37,15 @@ public class Company {
         this.ceo = ceo;
         this.description = description;
         this.sectorId = sectorId;
+        this.boardOfDirectors = boardOfDirectors;
+    }
+
+    public String getBoardOfDirectors() {
+        return boardOfDirectors;
+    }
+
+    public void setBoardOfDirectors(String boardOfDirectors) {
+        this.boardOfDirectors = boardOfDirectors;
     }
 
     public int getId() {
@@ -98,19 +104,6 @@ public class Company {
         this.sectorId = sectorId;
     }
 
-    public Set<StockExchange> getStockExchanges() {
-        return stockExchanges;
-    }
 
-    public void setStockExchanges(Set<StockExchange> stockExchanges) {
-        this.stockExchanges = stockExchanges;
-    }
 
-    public Set<BoardOfDirectors> getBod() {
-        return bod;
-    }
-
-    public void setBod(Set<BoardOfDirectors> bod) {
-        this.bod = bod;
-    }
 }

@@ -16,6 +16,11 @@
     <tr *ngFor="let sector of sectors">
       <td>{{ sector.name }}</td>
       <td>{{ sector.brief }}</td>
+      <td>
+        <a routerLink="/sectors" class="btn btn-secondary btn-sm">
+          <i class="fa fa-id-card"></i> Detail
+        </a>
+      </td>
       <td *ngIf=isAdmin>
         <a routerLink="/edit-sector" class="btn btn-secondary btn-sm" *ngIf=isAdmin [state]="sector">
           <i class="fa fa-pencil"></i> Edit
