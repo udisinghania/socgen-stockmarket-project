@@ -13,6 +13,7 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Service
@@ -56,7 +57,7 @@ public class StockPriceService {
         Date toDate = new SimpleDateFormat("dd-MM-yyyy").parse(to);
         List<StockPrice> stockPrices = stockPriceRepository
                 .findByCompanyIdAndStockExchangeId(companyId, stockExchangeId);
-        List<StockPrice> filteredList = stockPrices.stream()
+        return stockPrices.stream()
                 .filter(stockPrice -> {
                     Date date = null;
                     try {
@@ -68,7 +69,17 @@ public class StockPriceService {
                     return date.after(fromDate) && date.before(toDate);
                 })
                 .collect(Collectors.toList());
-        return filteredList;
     }
+
+    public Boolean deleteByStockId(int id)
+    {
+        if(stockPriceRepository.findById(id).isPresent())
+        {
+            stockPriceRepository.deleteById(id);
+            return true;
+        }
+        return false;
+    }
+
 
 }

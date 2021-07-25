@@ -17,4 +17,11 @@ public interface StockPriceRepository extends JpaRepository<StockPrice, Integer>
 
 
     List<StockPrice> findByCompanyIdAndStockExchangeId(int companyId, int stockExchangeId);
+
+    List<StockPrice> findByCompanyId(int companyId);
+
+    List<StockPrice> findByStockExchangeId(int exchangeId);
+
+
+
 }

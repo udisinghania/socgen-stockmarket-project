@@ -1,19 +1,26 @@
 package com.stockmarket.companyservice.entities;
 
+
+
+import com.fasterxml.jackson.annotation.JsonBackReference;
+
 import javax.persistence.*;
-import java.util.Date;
 
 @Entity
-public class StockPrice {
+public class StockPrice{
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
+
     @ManyToOne
+    @JsonBackReference
     private Company company;
 
     @ManyToOne
+    @JsonBackReference
     private StockExchange stockExchange;
+
 
     private double price;
 
@@ -30,6 +37,22 @@ public class StockPrice {
         this.stockExchange = stockExchange;
         this.price = price;
         this.date = date;
+    }
+
+    public Company getCompany() {
+        return company;
+    }
+
+    public void setCompany(Company company) {
+        this.company = company;
+    }
+
+    public StockExchange getStockExchange() {
+        return stockExchange;
+    }
+
+    public void setStockExchange(StockExchange stockExchange) {
+        this.stockExchange = stockExchange;
     }
 
     public String getDate() {
@@ -56,19 +79,4 @@ public class StockPrice {
         this.price = price;
     }
 
-    public Company getCompany() {
-        return company;
-    }
-
-    public void setCompany(Company company) {
-        this.company = company;
-    }
-
-    public StockExchange getStockExchange() {
-        return stockExchange;
-    }
-
-    public void setStockExchange(StockExchange stockExchange) {
-        this.stockExchange = stockExchange;
-    }
 }

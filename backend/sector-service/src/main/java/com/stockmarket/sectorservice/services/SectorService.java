@@ -8,9 +8,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Optional;
+import java.util.*;
 
 @Service
 public class SectorService {
@@ -58,8 +56,10 @@ public class SectorService {
             {
                 companyList.forEach(
                         company -> {
-                            String url = "http://localhost:9191/company/company/" + company.getId();
-                            restTemplate.delete(url);
+                            String url = "http://localhost:9191/company/company/{id}";
+                            Map<String, String> params = new HashMap<String, String>();
+                            params.put("id", String.valueOf(company.getId()));
+                            restTemplate.delete ( url,  params );
                         });
             }
             sectorRepository.deleteById(id);

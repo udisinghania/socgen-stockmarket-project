@@ -1,12 +1,29 @@
 server:
   port: 9191
 spring:
+  datasource:
+    name: test
+    url: jdbc:mysql://localhost:3306/test?serverTimezone=UTC
+    username: root
+    password: root
+    driver-class-name: com.mysql.cj.jdbc.Driver
+  jpa:
+    show-sql: true
+    properties:
+      dialect: org.hibernate.dialect.MySQL8Dialect
+    hibernate:
+      ddl-auto: update
   main:
     web-application-type: reactive
   application:
     name: API-GATEWAY-SERVICE
   cloud:
     gateway:
+      globalcors:
+        corsConfigurations:
+          '[/**]':
+            allowedOrigins: "*"
+            allowedMethods: "*"
       routes:
         - id: STOCK-EXCHANGE-SERVICE
           uri: lb://STOCK-EXCHANGE-SERVICE

@@ -68,7 +68,7 @@ public class StockExchangeController {
         }
         else
         {
-            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Sector with name "+ stockExchangeName+" not found.");
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Exchange with name "+ stockExchangeName+" not found.");
         }
     }
 

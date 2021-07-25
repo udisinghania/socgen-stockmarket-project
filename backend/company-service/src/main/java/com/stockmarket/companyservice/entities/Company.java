@@ -1,6 +1,10 @@
 package com.stockmarket.companyservice.entities;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 import javax.persistence.*;
+import java.util.List;
 import java.util.Set;
 
 @Entity
@@ -24,12 +28,19 @@ public class Company {
 
     private String boardOfDirectors;
 
+    private String stockExchangeNames;
+
+    @OneToMany(mappedBy="company")
+    @JsonManagedReference
+    @JsonProperty(access= JsonProperty.Access.READ_ONLY)
+    private List<StockPrice> stock_price;
+
 
     public Company() {
         super();
     }
 
-    public Company(int id, String name, String companyCode, long turnover, String ceo, String description, int sectorId, String boardOfDirectors) {
+    public Company(int id, String name, String companyCode, long turnover, String ceo, String description, int sectorId, String boardOfDirectors, String stockExchangeNames) {
         this.id = id;
         this.name = name;
         this.companyCode = companyCode;
@@ -38,6 +49,7 @@ public class Company {
         this.description = description;
         this.sectorId = sectorId;
         this.boardOfDirectors = boardOfDirectors;
+        this.stockExchangeNames = stockExchangeNames;
     }
 
     public String getBoardOfDirectors() {
@@ -104,6 +116,11 @@ public class Company {
         this.sectorId = sectorId;
     }
 
+    public String getStockExchangeNames() {
+        return stockExchangeNames;
+    }
 
-
+    public void setStockExchangeNames(String stockExchangeNames) {
+        this.stockExchangeNames = stockExchangeNames;
+    }
 }

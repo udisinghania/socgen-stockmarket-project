@@ -1,5 +1,6 @@
 package com.stockmarket.companyservice.entities;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import javax.persistence.*;
@@ -20,6 +21,15 @@ public class StockExchange {
 
     @OneToOne(cascade = {CascadeType.ALL})
     private Address address;
+
+    @OneToMany(mappedBy="stockExchange")
+    @JsonManagedReference
+    @JsonProperty(access= JsonProperty.Access.WRITE_ONLY)
+    private List<StockPrice> stock_price;
+
+    public List<StockPrice> getStocks(){
+        return stock_price;
+    }
 
 
     public StockExchange() {
