@@ -20,8 +20,13 @@ export class CreateSectorComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  onSubmit({value}: {value: Sector}) {
-    console.log(value);
-    this.sectorService.addSector(value);
+  onSubmit({value}: {value: any}) {
+    //console.log(value);
+    this.sector = {
+      id:'',
+      name:value.sectorName,
+      brief:value.brief
+    };
+    this.sectorService.addSector(this.sector);
   }
 }

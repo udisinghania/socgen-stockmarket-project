@@ -19,7 +19,8 @@ export class CreateCompanyComponent implements OnInit {
   ceo : '',
   description : '',
   boardOfDirectors : '',
-  sector_id : ''
+  sector_id : '',
+  stockExchangeNames:''
 }
 sectors : Sector[] | undefined;
   constructor(private sectorService: SectorService, private companyService: CompanyService) { }

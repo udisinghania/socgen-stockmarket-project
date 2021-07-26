@@ -18,7 +18,7 @@
 
         <div class="form-group">
             <label for="companyId">Company Name</label>
-            <select  id="stockExchangeId" name="companyId" #companyId ="ngModel" [(ngModel)]="ipo.company_id">
+            <select  id="stockExchangeId" name="companyId" #companyId ="ngModel" [(ngModel)]="ipo.companyId">
               <option *ngFor="let company of companies" [value]="company.id">
                 {{company.name}}
               </option>
@@ -27,7 +27,7 @@
 
         <div class="form-group">
             <label for="exchangeId">StockExchange Name</label>
-            <select  id="stockExchangeId" name="exchangeId" #exchangeId ="ngModel" [(ngModel)]="ipo.stock_exchange_id">
+            <select  id="stockExchangeId" name="exchangeId" #exchangeId ="ngModel" [(ngModel)]="ipo.stockExchangeId">
               <option *ngFor="let exchange of stockExchanges" [value]="exchange.id">
                 {{exchange.name}}
               </option>
@@ -41,7 +41,7 @@
             class="form-control"
             name="price"
             #price="ngModel"
-            [(ngModel)]="ipo.price_per_share"
+            [(ngModel)]="ipo.price"
             placeholder="Price per Share"
             required>
           
@@ -55,7 +55,7 @@
             name="shares"
             #shares="ngModel"
         
-            [(ngModel)]="ipo.total_shares"
+            [(ngModel)]="ipo.shares"
             placeholder="Shares"
             required>
           
@@ -68,7 +68,7 @@
             name="openDateTime"
             #openDateTime="ngModel"
             
-            [(ngModel)]="ipo.date_time"
+            [(ngModel)]="ipo.dateTime"
             placeholder="Open Date and Time"
             minlength="2"
             required>

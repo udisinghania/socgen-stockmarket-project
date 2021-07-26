@@ -11,7 +11,30 @@
       <th>Description</th>
       <th></th>
       <th></th>
+      <th></th>
     </tr>
   </thead>
+  <tbody>
+    <tr *ngFor="let company of companies">
+      <td>{{ company.name }}</td>
+      <td>{{ company.stockExchangeNames }}</td>
+      <td>{{ company.description }}</td>
+      <td>
+        <a routerLink="/detail-company" class="btn btn-secondary btn-sm" [state]="company">
+          <i class="fa fa-id-card"></i> Detail
+        </a>
+      </td>
+      <td *ngIf=isAdmin>
+        <a routerLink="/edit-company" class="btn btn-secondary btn-sm" *ngIf=isAdmin [state]="company">
+          <i class="fa fa-pencil"></i> Edit
+        </a>
+      </td>
+      <td *ngIf=isAdmin>
+        <button (click)="onDeleteClick(company.id)" class="btn btn-secondary btn-sm">
+          <i class="fa fa-trash"></i> Delete
+        </button>
+      </td>
+    </tr>
+  </tbody>
   
 </table>

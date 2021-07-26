@@ -9,9 +9,11 @@ import { Stock_exchange } from "../models/Stock_exchange";
 export class StockExchangeService {
 
   url: string;
+  url2: string;
 
   constructor(private http: HttpClient, private router: Router) {
     this.url = 'http://localhost:9191/stockexchange/stockexchanges';
+    this.url2 = 'http://localhost:9191/company/stockExchange/';
   }
 
   getStockExchanges(): Observable<Stock_exchange[]> {
@@ -23,7 +25,7 @@ export class StockExchangeService {
   }
 
   getStockExchangeCompanies(id: string): Observable<Company[]> {
-    return this.http.get<Company[]>(this.url + id + "/companies");
+    return this.http.get<Company[]>(this.url2 +id);
   }
 
   addStockExchange(stockExchange: Stock_exchange) {

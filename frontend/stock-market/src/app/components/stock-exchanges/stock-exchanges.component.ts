@@ -12,12 +12,14 @@ export class StockExchangesComponent implements OnInit {
 
   isAdmin = false;
   stockExchanges!: Stock_exchange[];
+  allStockExchanges!: Stock_exchange[];
+  page = 1;
+  pageSize = 1;
+  searchTerm!: string;
+  collectionSize!: number;
 
 
   constructor(private stockExchangeService: StockExchangeService) {
-
-    
-
    }
  
   
@@ -27,11 +29,17 @@ export class StockExchangesComponent implements OnInit {
     this.stockExchangeService.getStockExchanges()
     .subscribe(response => {
       this.stockExchanges = response;
+      this.collectionSize = this.stockExchanges.length;
+      this.allStockExchanges = this.stockExchanges;
     });
-
+   
     
     
    
+  }
+  search(value: string): void {
+    this.stockExchanges = this.allStockExchanges.filter((val) => val.name.toLowerCase().includes(value));
+    this.collectionSize = this.stockExchanges.length;
   }
   
   onDeleteClick(id: string) {

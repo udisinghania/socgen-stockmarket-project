@@ -24,6 +24,11 @@ import { EditSectorComponent } from './components/sectors/edit-sector/edit-secto
 import { EditStockExchangeComponent } from './components/stock-exchanges/edit-stock-exchange/edit-stock-exchange.component';
 import { EditCompanyComponent } from './components/companies/edit-company/edit-company.component';
 import { EditIpoComponent } from './components/ipos/edit-ipo/edit-ipo.component';
+import { DetailSectorComponent } from './components/sectors/detail-sector/detail-sector.component';
+import { DetailStockExchangeComponent } from './components/stock-exchanges/detail-stock-exchange/detail-stock-exchange.component';
+import { DetailCompanyComponent } from './components/companies/detail-company/detail-company.component';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { ListFilterPipe } from './pipes/ListFilterPipe.pipe';
 @NgModule({
   declarations: [
     AppComponent,
@@ -43,7 +48,11 @@ import { EditIpoComponent } from './components/ipos/edit-ipo/edit-ipo.component'
     EditSectorComponent,
     EditStockExchangeComponent,
     EditCompanyComponent,
-    EditIpoComponent
+    EditIpoComponent,
+    DetailSectorComponent,
+    DetailStockExchangeComponent,
+    DetailCompanyComponent,
+    ListFilterPipe
   ],
   imports: [
     BrowserModule,
@@ -55,7 +64,8 @@ import { EditIpoComponent } from './components/ipos/edit-ipo/edit-ipo.component'
     AgGridModule.withComponents([CompaniesComponent,
       SectorsComponent,
       IposComponent,
-      StockExchangesComponent])
+      StockExchangesComponent]),
+    NgbModule
   ],
   providers: [],
   bootstrap: [AppComponent]

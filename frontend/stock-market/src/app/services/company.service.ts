@@ -9,9 +9,11 @@ import { Ipo } from "../models/Ipo";
 export class CompanyService {
 
   url: string;
+  url2 : string;
 
   constructor(private http: HttpClient, private router: Router) {
     this.url = 'http://localhost:9191/company/company/';
+    this.url2 = 'http://localhost:9191/company/ipo/company/'
   }
 
   getCompanies(): Observable<Company[]> {
@@ -23,7 +25,7 @@ export class CompanyService {
   }
 
   getCompanyIpoDetails(id: string): Observable<Ipo> {
-    return this.http.get<Ipo>(this.url + id + "/ipos");
+    return this.http.get<Ipo>(this.url2 + id);
   }
 
   addCompany(company: Company) {

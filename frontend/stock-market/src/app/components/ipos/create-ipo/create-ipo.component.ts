@@ -16,12 +16,13 @@ export class CreateIpoComponent implements OnInit {
   stockExchanges : Stock_exchange[] | undefined;
   ipo : Ipo =
   {
-    date_time : new Date() ,
-    price_per_share : 0,
-    total_shares : 0,
+    id:'',
+    dateTime : 0 ,
+    price : 0,
+    shares : 0,
     remarks : '',
-    company_id : '',
-    stock_exchange_id : ''
+    companyId : '',
+    stockExchangeId : ''
   };
  
   constructor(private stockExchangeService: StockExchangeService, private companyService: CompanyService) { }

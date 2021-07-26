@@ -22,8 +22,8 @@ export class SectorService {
     return this.http.get<Sector>(this.url + id);
   }
 
-  getSectorCompanies(id: string): Observable<Company[]> {
-    return this.http.get<Company[]>(this.url + "/companies/"+id);
+  getSectorCompanies(name: string): Observable<Company[]> {
+    return this.http.get<Company[]>(this.url + "/companies/"+name);
   }
 
   addSector(sector: Sector) {
