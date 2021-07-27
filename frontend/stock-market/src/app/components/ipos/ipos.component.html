@@ -8,6 +8,7 @@
     <tr>
       <th>Company Name</th>
       <th>Stock Exchange</th>
+      <th>Remarks</th>
       <th>Price per Share</th>
       <th>Number of Shares</th>
       <th>Open Date Time</th>
@@ -19,6 +20,7 @@
     <tr *ngFor="let ipo of ipos">
       <td>{{ ipo.companyId }}</td>
       <td>{{ ipo.stockExchangeId }}</td>
+      <td>{{ ipo.remarks }}</td>
       <td>{{ ipo.price }}</td>
       <td>{{ ipo.shares }}</td>
       <td>{{ ipo.dateTime }}</td>

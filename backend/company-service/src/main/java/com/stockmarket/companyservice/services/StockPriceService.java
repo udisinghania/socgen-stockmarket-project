@@ -39,8 +39,8 @@ public class StockPriceService {
                 StockPrice stockPrice= new StockPrice();
                 stockPrice.setPrice(excelData.getPrice());
                 stockPrice.setDate(excelData.getDate());
-                stockPrice.setStockExchange(stockExchangeRepository.findById(excelData.getExchangeId()).get());
-                stockPrice.setCompany(companyRepository.findById(excelData.getCompanyId()).get());
+                stockPrice.setStockExchange(stockExchangeRepository.findByName(excelData.getStockExchangeName()).get());
+                stockPrice.setCompany(companyRepository.findByCompanyCode(excelData.getCompanyCode()).get());
                 stockPriceRepository.save(stockPrice);
             }
             catch(Exception e) {

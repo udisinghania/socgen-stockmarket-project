@@ -3,9 +3,10 @@ package com.stockmarket.companyservice.dtos;
 
 public class ExcelDataDto {
 
-    private int companyId;
+    private String companyCode;
 
-    private int exchangeId;
+    private String stockExchangeName;
+
 
     private double price;
 
@@ -15,28 +16,27 @@ public class ExcelDataDto {
         super();
     }
 
-    public ExcelDataDto(int companyId, int exchangeId, double price, String date) {
-        super();
-        this.companyId = companyId;
-        this.exchangeId = exchangeId;
+    public ExcelDataDto(String companyCode, String stockExchangeName, double price, String date) {
+        this.companyCode = companyCode;
+        this.stockExchangeName = stockExchangeName;
         this.price = price;
         this.date = date;
     }
 
-    public int getCompanyId() {
-        return companyId;
+    public String getCompanyCode() {
+        return companyCode;
     }
 
-    public void setCompanyId(int companyId) {
-        this.companyId = companyId;
+    public void setCompanyCode(String companyCode) {
+        this.companyCode = companyCode;
     }
 
-    public int getExchangeId() {
-        return exchangeId;
+    public String getStockExchangeName() {
+        return stockExchangeName;
     }
 
-    public void setExchangeId(int exchangeId) {
-        this.exchangeId = exchangeId;
+    public void setStockExchangeName(String stockExchangeName) {
+        this.stockExchangeName = stockExchangeName;
     }
 
     public double getPrice() {
@@ -54,4 +54,6 @@ public class ExcelDataDto {
     public void setDate(String date) {
         this.date = date;
     }
+
+
 }

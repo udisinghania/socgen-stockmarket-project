@@ -34,7 +34,8 @@
               "C:/Users/User/Desktop/workspace/stock-application/socgen-stockmarket-project/frontend/stock-market/node_modules/ag-grid-community/dist/styles/ag-theme-balham.css"  
           ],
             "scripts": [
-              "C:/Users/User/Desktop/workspace/stock-application/socgen-stockmarket-project/frontend/stock-market/node_modules/bootstrap/dist/js/bootstrap.js"
+              "C:/Users/User/Desktop/workspace/stock-application/socgen-stockmarket-project/frontend/stock-market/node_modules/bootstrap/dist/js/bootstrap.js",
+              "C:/Users/User/Desktop/workspace/stock-application/socgen-stockmarket-project/frontend/stock-market/node_modules/lodash/lodash.min.js"
             ]
           },
           "configurations": {
