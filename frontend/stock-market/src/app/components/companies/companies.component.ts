@@ -12,7 +12,12 @@ export class CompaniesComponent implements OnInit {
   constructor(private companyService:CompanyService) { }
 
   isAdmin = false;
-  companies : Company[] | undefined;
+  companies !: Company[] ;
+  allCompaneies !: Company[];
+  page = 1;
+  pageSize = 1;
+  searchTerm!: string;
+  collectionSize!: number;
 
   ngOnInit(): void {
     console.log(history.state);
@@ -22,8 +27,14 @@ export class CompaniesComponent implements OnInit {
     this.companyService.getCompanies()
     .subscribe(response => {
       this.companies = response;
+      this.collectionSize = this.companies.length;
+      this.allCompaneies = this.companies;
     });
 
+  }
+  search(value: string): void {
+    
+    this.collectionSize = this.companies.length;
   }
 
   onDeleteClick(id:string){

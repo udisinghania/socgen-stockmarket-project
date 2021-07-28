@@ -10,7 +10,12 @@ import { Sector } from 'src/app/models/Sector';
 export class SectorsComponent implements OnInit {
 
   isAdmin = false;
-  sectors : Sector[] | undefined;
+  sectors !: Sector[] ;
+  allSectors !: Sector[];
+  page = 1;
+  pageSize = 1;
+  searchTerm!: string;
+  collectionSize!: number;
 
   constructor(private sectorService: SectorService) { }
 
@@ -24,7 +29,14 @@ export class SectorsComponent implements OnInit {
     this.sectorService.getSectors()
       .subscribe(response => {
         this.sectors = response;
+        this.collectionSize = this.sectors.length;
+        this.allSectors=this.sectors;
+
       });
+  }
+  search(value: string): void {
+    
+    this.collectionSize = this.sectors.length;
   }
 
   onDeleteClick(id: string) {

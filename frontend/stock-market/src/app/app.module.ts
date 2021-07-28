@@ -31,6 +31,7 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { ListFilterPipe } from './pipes/ListFilterPipe.pipe';
 import { LoginComponent } from './components/login/login.component';
 import { ChartModule } from 'angular-highcharts';
+import { SignupComponent } from './components/signup/signup.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -55,7 +56,8 @@ import { ChartModule } from 'angular-highcharts';
     DetailStockExchangeComponent,
     DetailCompanyComponent,
     ListFilterPipe,
-    LoginComponent
+    LoginComponent,
+    SignupComponent
   ],
   imports: [
     BrowserModule,

@@ -10,10 +10,12 @@ import { ImportExcelComponent } from './components/import-excel/import-excel.com
 import { CreateIpoComponent } from './components/ipos/create-ipo/create-ipo.component';
 import { EditIpoComponent } from './components/ipos/edit-ipo/edit-ipo.component';
 import { IposComponent } from './components/ipos/ipos.component';
+import { LoginComponent } from './components/login/login.component';
 import { CreateSectorComponent } from './components/sectors/create-sector/create-sector.component';
 import { DetailSectorComponent } from './components/sectors/detail-sector/detail-sector.component';
 import { EditSectorComponent } from './components/sectors/edit-sector/edit-sector.component';
 import { SectorsComponent } from './components/sectors/sectors.component';
+import { SignupComponent } from './components/signup/signup.component';
 import { CreateStockExchangeComponent } from './components/stock-exchanges/create-stock-exchange/create-stock-exchange.component';
 import { DetailStockExchangeComponent } from './components/stock-exchanges/detail-stock-exchange/detail-stock-exchange.component';
 import { EditStockExchangeComponent } from './components/stock-exchanges/edit-stock-exchange/edit-stock-exchange.component';
@@ -22,6 +24,8 @@ import { UserNavbarComponent } from './components/user-navbar/user-navbar.compon
 
 const routes: Routes = [
   {path: 'user-navbar', component: UserNavbarComponent},
+  {path: 'login', component: LoginComponent},
+  {path: 'signup', component: SignupComponent},
   {path: 'admin-navbar', component: AdminNavbarComponent},
   {path: 'companies', component: CompaniesComponent},
   {path: 'create-company', component: CreateCompanyComponent},

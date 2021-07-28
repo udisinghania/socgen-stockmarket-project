@@ -5,54 +5,55 @@ import { Injectable } from '@angular/core';
 })
 export class AuthService {
 
-  private currentUser:User;
+  private user: User;
 
-  private users:User[];
+  private userArray: User[];
 
   constructor() {
-    this.currentUser={
-      username:"",
-      password:"",
-      role:"unauthorized"
+    this.user = {
+      username: "",
+      password: "",
+      role: "unauth"
     };
-    this.users = [
+    this.userArray = [
       {
-        username:"user",
-        password:"user",
-        role:"user"
-      },
-      {
-        username:"admin",
-        password:"admin",
-        role:"admin"
+          username: "user",
+          password: "user",
+          role: "user"
+        },
+        {
+          username: "admin",
+          password: "admin",
+          role: "admin"
+        }
+      ];
+    }
+
+    authenticate(username: string, password: string){
+      var user: User = this.userArray[0];
+      var admin: User = this.userArray[1];
+      if(user.username===username && user.password===password){
+        this.user = user;
       }
-    ]
-  }
-
-  authenticate(username:string,password:string){
-    if(username==="user" && password==="user"){
-      this.currentUser = this.users[0];
-    }
-    else if(username==="admin" && password==="admin"){
-      this.currentUser = this.users[1];
-    }
-    else{
-      this.currentUser = {
-        username:"",
-        password:"",
-        role:"unauthorized"
+      else if(admin.username===username && admin.password===password){
+        this.user = admin;
+      }
+      else{
+        this.user = {
+          username: "",
+          password: "",
+          role: "unauth"
+        };
       }
     }
-  }
 
-  getCurrentUserRole():string{
-    return this.currentUser.role;
-  }
-
+    getState(): string{
+      return !this.user.role?"unauth":this.user.role;
+    }
 }
 
 interface User{
-  username:string,
-  password:string,
-  role:string
+  username: string;
+  password: string;
+  role: string;
 }

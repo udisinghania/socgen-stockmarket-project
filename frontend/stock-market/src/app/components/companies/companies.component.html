@@ -6,6 +6,7 @@
 <table class="table table-striped">
   <thead class="thead-inverse thead-dark">
     <tr>
+      <th scope="col">#</th>
       <th>Company Name</th>
       <th>Stock Exchanges</th>
       <th>Description</th>
@@ -15,7 +16,8 @@
     </tr>
   </thead>
   <tbody>
-    <tr *ngFor="let company of companies">
+    <tr *ngFor="let company of companies|slice: (page-1) * pageSize : page * pageSize; index as i">
+      <th scope="row">{{ (page -1) * pageSize + i + 1 }}</th>
       <td>{{ company.name }}</td>
       <td>{{ company.stockExchangeNames }}</td>
       <td>{{ company.description }}</td>
@@ -38,3 +40,5 @@
   </tbody>
   
 </table>
+<ngb-pagination [collectionSize]="collectionSize" [(page)]="page" [boundaryLinks]="true"
+    [pageSize]="pageSize" class="d-flex justify-content-center"></ngb-pagination>
