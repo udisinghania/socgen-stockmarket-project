@@ -29,6 +29,8 @@ import { DetailStockExchangeComponent } from './components/stock-exchanges/detai
 import { DetailCompanyComponent } from './components/companies/detail-company/detail-company.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { ListFilterPipe } from './pipes/ListFilterPipe.pipe';
+import { LoginComponent } from './components/login/login.component';
+import { ChartModule } from 'angular-highcharts';
 @NgModule({
   declarations: [
     AppComponent,
@@ -52,7 +54,8 @@ import { ListFilterPipe } from './pipes/ListFilterPipe.pipe';
     DetailSectorComponent,
     DetailStockExchangeComponent,
     DetailCompanyComponent,
-    ListFilterPipe
+    ListFilterPipe,
+    LoginComponent
   ],
   imports: [
     BrowserModule,
@@ -60,6 +63,7 @@ import { ListFilterPipe } from './pipes/ListFilterPipe.pipe';
     FormsModule,
     ReactiveFormsModule,
     HttpClientModule,
+    ChartModule,
     NgMultiSelectDropDownModule.forRoot(),
     AgGridModule.withComponents([CompaniesComponent,
       SectorsComponent,

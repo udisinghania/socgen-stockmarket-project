@@ -10,8 +10,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @RestController
-@RequestMapping("/excel")
-@CrossOrigin(origins = "http://localhost:4200")
+@RequestMapping("/excel")@CrossOrigin("*")
 public class ExcelController {
 
 

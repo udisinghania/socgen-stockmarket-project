@@ -1,1 +1,82 @@
-<p>edit-company works!</p>
+<div class="row">
+    <div class="col-md-6">
+      <a routerLink="/companies" class="btn btn-link"[state]="{type:'admin'}">
+        <i class="fa fa-arrow-circle-o-left"></i> Back To List of Companies
+      </a>
+    </div>
+    <div class="col-md-6">
+    </div>
+</div>
+<br>
+<div class="card">
+  <div class="card-header">
+    Edit Company
+  </div>
+  <div class="card-body">
+    <form #companyForm="ngForm" (ngSubmit)="onSubmit(companyForm)">
+
+      <div class="form-group">
+        <label for="companyName">Company Name</label>
+        <input
+          type="text"
+          class="form-control"
+          name="companyName"
+          #companyName="ngModel"
+          [(ngModel)]="company.name"
+          minlength="2"
+          required>
+        
+      </div>
+
+      <div class="form-group">
+        <label for="description">Company Description</label>
+        <input
+          type="text"
+          class="form-control"
+          name="description"
+          #description="ngModel"
+          [(ngModel)]="company.description"
+          minlength="2"
+          required>
+        
+      </div>
+
+      <div class="form-group">
+        <label for="ceo">Company CEO</label>
+        <input
+          type="text"
+          class="form-control"
+          name="ceo"
+          #ceo="ngModel"
+          [(ngModel)]="company.ceo"
+          minlength="2"
+          required>
+        
+      </div>
+
+      <div class="form-group">
+        <label for="description">Company Turnover</label>
+        <input
+          type="number"
+          class="form-control"
+          name="turnover"
+          #turnover="ngModel"
+          [(ngModel)]="company.turnover"
+          required>
+      </div>
+
+      <div class="form-group">
+          <label for="sectorId">Sector Name</label>
+          <select  id="sector" name="sectorId" #sectorId ="ngModel" [(ngModel)]="company.sector_id">
+            <option *ngFor="let sector of sectors" [value]="sector.id">
+              {{sector.name}}
+            </option>
+          </select>
+      </div>
+
+
+
+      <input type="submit" value="Submit" class="btn btn-primary btn-block">
+    </form>
+  </div>
+</div>

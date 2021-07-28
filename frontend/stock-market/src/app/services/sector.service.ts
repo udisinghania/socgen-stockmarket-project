@@ -11,7 +11,7 @@ export class SectorService {
   url: string;
 
   constructor(private http: HttpClient, private router: Router) {
-    this.url = 'http://localhost:9191/sector/sectors/';
+    this.url = 'http://localhost:9091/sector/sectors/';
   }
 
   getSectors(): Observable<Sector[]> {

@@ -10,7 +10,7 @@ export class IpoService {
   url: string;
 
   constructor(private http: HttpClient, private router: Router) {
-    this.url = 'http://localhost:9191/company/ipo/';
+    this.url = 'http://localhost:9093/company/ipo/';
   }
 
   public getIpos(): Observable<Ipo[]> {

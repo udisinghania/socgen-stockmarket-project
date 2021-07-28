@@ -12,8 +12,8 @@ export class CompanyService {
   url2 : string;
 
   constructor(private http: HttpClient, private router: Router) {
-    this.url = 'http://localhost:9191/company/company/';
-    this.url2 = 'http://localhost:9191/company/ipo/company/'
+    this.url = 'http://localhost:9093/company/company/';
+    this.url2 = 'http://localhost:9093/company/ipo/company/'
   }
 
   getCompanies(): Observable<Company[]> {

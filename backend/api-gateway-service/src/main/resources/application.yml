@@ -19,11 +19,6 @@ spring:
     name: API-GATEWAY-SERVICE
   cloud:
     gateway:
-      globalcors:
-        corsConfigurations:
-          '[/**]':
-            allowedOrigins: "*"
-            allowedMethods: "*"
       routes:
         - id: STOCK-EXCHANGE-SERVICE
           uri: lb://STOCK-EXCHANGE-SERVICE

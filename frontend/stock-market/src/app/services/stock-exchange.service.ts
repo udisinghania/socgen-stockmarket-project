@@ -12,8 +12,8 @@ export class StockExchangeService {
   url2: string;
 
   constructor(private http: HttpClient, private router: Router) {
-    this.url = 'http://localhost:9191/stockexchange/stockexchanges';
-    this.url2 = 'http://localhost:9191/company/stockExchange/';
+    this.url = 'http://localhost:9090/stockexchange/stockexchanges';
+    this.url2 = 'http://localhost:9093/company/stockExchange/';
   }
 
   getStockExchanges(): Observable<Stock_exchange[]> {

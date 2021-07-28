@@ -12,7 +12,7 @@ import java.text.ParseException;
 import java.util.List;
 
 @RestController
-@CrossOrigin(origins = "http://localhost:4200")
+@CrossOrigin(origins="http://localhost:4200")
 @RequestMapping("/company")
 public class StockPriceController {
 
