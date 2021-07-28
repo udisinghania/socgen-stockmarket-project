@@ -1,0 +1,41 @@
+<hr>
+<a routerLink="/create-sector" class="btn btn-primary" *ngIf=isAdmin>Add new Sector</a>
+<br>
+<br>
+
+<table  class="table table-striped">
+  <thead class="thead-inverse thead-dark">
+    <tr>
+      <th scope="col">#</th>
+      <th>Sector Name</th>
+      <th>Brief</th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let sector of sectors|slice: (page-1) * pageSize : page * pageSize; index as i">
+      <th scope="row">{{ (page -1) * pageSize + i + 1 }}</th>
+      <td>{{ sector.name }}</td>
+      <td>{{ sector.brief }}</td>
+      <td>
+        <a routerLink="/detail-sector" class="btn btn-secondary btn-sm" [state]="sector">
+          <i class="fa fa-id-card"></i> Detail
+        </a>
+      </td>
+      <td *ngIf=isAdmin>
+        <a routerLink="/edit-sector" class="btn btn-secondary btn-sm" *ngIf=isAdmin [state]="sector">
+          <i class="fa fa-pencil"></i> Edit
+        </a>
+      </td>
+      <td *ngIf=isAdmin>
+        <button (click)="onDeleteClick(sector.id)" class="btn btn-secondary btn-sm">
+          <i class="fa fa-trash"></i> Delete
+        </button>
+      </td>
+    </tr>
+  </tbody>
+  
+</table>
+<ngb-pagination [collectionSize]="collectionSize" [(page)]="page" [boundaryLinks]="true"
+    [pageSize]="pageSize" class="d-flex justify-content-center"></ngb-pagination>

@@ -16,6 +16,9 @@ public class Company {
     private String companyCode;
     private String boardOfDirectors;
 
+
+    private String stockExchangeNames;
+
     @ManyToOne
     private Sector sector;
 
@@ -23,7 +26,7 @@ public class Company {
         super();
     }
 
-    public Company(int id, String name, long turnover, String ceo, String description, String companyCode, String boardOfDirectors, Sector sector) {
+    public Company(int id, String name, long turnover, String ceo, String description, String companyCode, String stockExchangeNames, String boardOfDirectors, Sector sector) {
         this.id = id;
         this.name = name;
         this.turnover = turnover;
@@ -32,6 +35,7 @@ public class Company {
         this.companyCode = companyCode;
         this.boardOfDirectors = boardOfDirectors;
         this.sector = sector;
+        this.stockExchangeNames=stockExchangeNames;
     }
 
     public int getId() {
@@ -98,5 +102,11 @@ public class Company {
         this.sector = sector;
     }
 
+    public String getStockExchangeNames() {
+        return stockExchangeNames;
+    }
 
+    public void setStockExchangeNames(String stockExchangeNames) {
+        this.stockExchangeNames = stockExchangeNames;
+    }
 }

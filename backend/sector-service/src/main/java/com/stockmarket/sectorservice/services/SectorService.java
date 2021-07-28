@@ -4,11 +4,11 @@ import com.stockmarket.sectorservice.entities.Company;
 import com.stockmarket.sectorservice.entities.Sector;
 import com.stockmarket.sectorservice.repositories.SectorRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
+import org.springframework.web.client.RestTemplate;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Optional;
+import java.util.*;
 
 @Service
 public class SectorService {
@@ -47,6 +47,21 @@ public class SectorService {
     {
         if(sectorRepository.findById(id).isPresent())
         {
+            //deleting all the companies listed in sector
+            String sectorName= sectorRepository.findById(id).get().getName();
+            List<Company> companyList = getCompanies(sectorName);
+
+            RestTemplate restTemplate = new RestTemplate();
+            if (!companyList.isEmpty())
+            {
+                companyList.forEach(
+                        company -> {
+                            String url = "http://localhost:9191/company/company/{id}";
+                            Map<String, String> params = new HashMap<String, String>();
+                            params.put("id", String.valueOf(company.getId()));
+                            restTemplate.delete ( url,  params );
+                        });
+            }
             sectorRepository.deleteById(id);
             return true;
         }
@@ -74,14 +89,5 @@ public class SectorService {
         return sectorOptional.map(Sector::getCompanies).orElse(null);
     }
 
-    public Sector addCompanyToSector(String sectorName, Company company)
-    {
-        Sector sector = sectorRepository.findByName(sectorName);
-        if(sector == null)
-            return null;
-        sector.getCompanies().add(company);
-        sector = sectorRepository.save(sector);
-        return sector;
-    }
 
 }

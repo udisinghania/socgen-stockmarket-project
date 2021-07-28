@@ -1,0 +1,44 @@
+<hr>
+<a routerLink="/create-company" class="btn btn-primary" *ngIf=isAdmin>Add new Company</a>
+<br>
+<br>
+
+<table class="table table-striped">
+  <thead class="thead-inverse thead-dark">
+    <tr>
+      <th scope="col">#</th>
+      <th>Company Name</th>
+      <th>Stock Exchanges</th>
+      <th>Description</th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let company of companies|slice: (page-1) * pageSize : page * pageSize; index as i">
+      <th scope="row">{{ (page -1) * pageSize + i + 1 }}</th>
+      <td>{{ company.name }}</td>
+      <td>{{ company.stockExchangeNames }}</td>
+      <td>{{ company.description }}</td>
+      <td>
+        <a routerLink="/detail-company" class="btn btn-secondary btn-sm" [state]="company">
+          <i class="fa fa-id-card"></i> Detail
+        </a>
+      </td>
+      <td *ngIf=isAdmin>
+        <a routerLink="/edit-company" class="btn btn-secondary btn-sm" *ngIf=isAdmin [state]="company">
+          <i class="fa fa-pencil"></i> Edit
+        </a>
+      </td>
+      <td *ngIf=isAdmin>
+        <button (click)="onDeleteClick(company.id)" class="btn btn-secondary btn-sm">
+          <i class="fa fa-trash"></i> Delete
+        </button>
+      </td>
+    </tr>
+  </tbody>
+  
+</table>
+<ngb-pagination [collectionSize]="collectionSize" [(page)]="page" [boundaryLinks]="true"
+    [pageSize]="pageSize" class="d-flex justify-content-center"></ngb-pagination>

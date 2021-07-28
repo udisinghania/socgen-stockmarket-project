@@ -5,7 +5,9 @@ import com.stockmarket.stockexchange.entities.StockExchange;
 import com.stockmarket.stockexchange.repositories.AddressRepository;
 import com.stockmarket.stockexchange.repositories.StockExchangeRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
+import org.springframework.web.client.RestTemplate;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -44,6 +46,13 @@ public class StockExchangeService {
     {
         if(stockExchangeRepository.findById(id).isPresent())
         {
+            RestTemplate restTemplate = new RestTemplate();
+            String url = "http://localhost:9191/company/update/companies/" + getStockExchangeById(id).getName();
+            ResponseEntity<Boolean> b= restTemplate.getForEntity(url, Boolean.class);
+            if (b.getBody()==true)
+            {
+                System.out.println(b.getBody());
+            }
             stockExchangeRepository.deleteById(id);
             return true;
         }

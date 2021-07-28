@@ -1,0 +1,68 @@
+
+<table class="table table-striped">
+    <thead class="thead-inverse thead-dark">
+      <tr>
+        <th></th>
+        <th></th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>Company Name</td>
+        <td>{{ company.name }}</td>
+      </tr>
+      <tr>
+          <td>Stock Exchange names</td>
+        <td>{{ company.stockExchangeNames }}</td>
+      </tr>
+      <tr>
+          <td>Description</td>
+        <td>{{ company.description }}</td>
+      </tr>
+      <tr>
+          <td>Turnover</td>
+        <td>{{ company.turnover }}</td>
+      </tr>
+      <tr>
+          <td>CEO</td>
+        <td>{{ company.ceo }}</td>
+      </tr>
+      <tr>
+          <td>Board of Directors</td>
+        <td>{{ company.boardOfDirectors }}</td>
+      </tr>
+      
+      <tr>
+        <td>Sector Name</td>
+      <td>{{ sector.name }}</td>
+    </tr>
+    </tbody> 
+  </table>
+  
+  <br>
+  
+  <table class="table table-striped">
+    <thead class="thead-inverse thead-dark">
+      <tr>
+        <th>Remarks</th>
+        <th>Stock Exchange</th>
+        <th>Price per Share</th>
+        <th>Number of Shares</th>
+        <th>Open Date Time</th>
+        <th></th>
+        <th></th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+          <td>{{ ipo.remarks }}</td>
+        <td>{{ ipo.stockExchangeId }}</td>
+        <td>{{ ipo.price }}</td>
+        <td>{{ ipo.shares }}</td>
+        <td>{{ ipo.dateTime }}</td>
+      </tr>
+    </tbody>
+    
+  </table>
+  
+  

@@ -1,0 +1,36 @@
+<hr>
+<a routerLink="/create-ipo" class="btn btn-primary" *ngIf=isAdmin>Add new IPO</a>
+<br>
+<br>
+
+<table class="table table-striped">
+  <thead class="thead-inverse thead-dark">
+    <tr>
+      <th>Company Name</th>
+      <th>Stock Exchange</th>
+      <th>Remarks</th>
+      <th>Price per Share</th>
+      <th>Number of Shares</th>
+      <th>Open Date Time</th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let ipo of ipos">
+      <td>{{ ipo.companyId }}</td>
+      <td>{{ ipo.stockExchangeId }}</td>
+      <td>{{ ipo.remarks }}</td>
+      <td>{{ ipo.price }}</td>
+      <td>{{ ipo.shares }}</td>
+      <td>{{ ipo.dateTime }}</td>
+      <td>
+        <a routerLink="edit-ipo" class="btn btn-secondary btn-sm">
+          <i class="fa fa-pencil"></i> Edit
+        </a>
+      </td>
+    </tr>
+  </tbody>
+  
+</table>
+

@@ -1,33 +1,66 @@
 package com.stockmarket.companyservice.entities;
 
+
+
+import com.fasterxml.jackson.annotation.JsonBackReference;
+
 import javax.persistence.*;
-import javax.validation.constraints.NotNull;
-import java.sql.Timestamp;
 
 @Entity
-public class StockPrice {
-
+public class StockPrice{
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
-    private double price;
-
-    private Timestamp timestamp;
 
     @ManyToOne
-    private Stock stock;
+    @JsonBackReference
+    private Company company;
+
+    @ManyToOne
+    @JsonBackReference
+    private StockExchange stockExchange;
+
+
+    private double price;
+
+    private String date;
+
 
     public StockPrice() {
         super();
     }
 
-    public StockPrice(int id, double price, Timestamp timestamp, Stock stock) {
-        super();
+    public StockPrice(int id, Company company, StockExchange stockExchange, double price, String date) {
         this.id = id;
+        this.company = company;
+        this.stockExchange = stockExchange;
         this.price = price;
-        this.timestamp = timestamp;
-        this.stock = stock;
+        this.date = date;
+    }
+
+    public Company getCompany() {
+        return company;
+    }
+
+    public void setCompany(Company company) {
+        this.company = company;
+    }
+
+    public StockExchange getStockExchange() {
+        return stockExchange;
+    }
+
+    public void setStockExchange(StockExchange stockExchange) {
+        this.stockExchange = stockExchange;
+    }
+
+    public String getDate() {
+        return date;
+    }
+
+    public void setDate(String date) {
+        this.date = date;
     }
 
     public int getId() {
@@ -44,22 +77,6 @@ public class StockPrice {
 
     public void setPrice(double price) {
         this.price = price;
-    }
-
-    public Timestamp getTimestamp() {
-        return timestamp;
-    }
-
-    public void setTimestamp(Timestamp timestamp) {
-        this.timestamp = timestamp;
-    }
-
-    public Stock getStock() {
-        return stock;
-    }
-
-    public void setStock(Stock stock) {
-        this.stock = stock;
     }
 
 }

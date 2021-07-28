@@ -1,12 +1,11 @@
 package com.stockmarket.companyservice.entities;
 
-import javax.persistence.CascadeType;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.OneToOne;
-import javax.persistence.Table;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+import com.fasterxml.jackson.annotation.JsonProperty;
+
+import javax.persistence.*;
+import java.util.List;
+import java.util.Set;
 
 @Entity
 @Table(name="STOCK_EXCHANGE")
@@ -23,17 +22,26 @@ public class StockExchange {
     @OneToOne(cascade = {CascadeType.ALL})
     private Address address;
 
+    @OneToMany(mappedBy="stockExchange")
+    @JsonManagedReference
+    @JsonProperty(access= JsonProperty.Access.WRITE_ONLY)
+    private List<StockPrice> stock_price;
+
+    public List<StockPrice> getStocks(){
+        return stock_price;
+    }
+
+
     public StockExchange() {
         super();
     }
 
-    public StockExchange(int id, String name, String brief, String remarks, Address addressId) {
-        super();
+    public StockExchange(int id, String name, String brief, String remarks, Address address) {
         this.id = id;
         this.name = name;
         this.brief = brief;
         this.remarks = remarks;
-        this.address = addressId;
+        this.address = address;
     }
 
     public int getId() {

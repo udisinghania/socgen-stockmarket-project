@@ -3,6 +3,7 @@ package com.stockmarket.sectorservice.controllers;
 import com.stockmarket.sectorservice.entities.Company;
 import com.stockmarket.sectorservice.entities.Sector;
 import com.stockmarket.sectorservice.services.SectorService;
+import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -12,6 +13,7 @@ import java.util.List;
 import java.util.Optional;
 
 @RestController
+@CrossOrigin("*")
 @RequestMapping("/sector")
 public class SectorController {
 
@@ -50,6 +52,7 @@ public class SectorController {
     }
 
     @PostMapping("/sectors")
+    @ApiOperation(value = "Create Sector")
     private ResponseEntity<Sector> addSector(@RequestBody Sector sector)
     {
         return ResponseEntity.ok(sectorService.addSector(sector));
@@ -72,7 +75,7 @@ public class SectorController {
 
 
 
-    @GetMapping("/companies/{sectorName}")
+    @GetMapping("/sectors/companies/{sectorName}")
     private ResponseEntity<List<Company>> getCompanies(@PathVariable("sectorName") String sectorName){
         return ResponseEntity.ok(sectorService.getCompanies(sectorName));
     }
